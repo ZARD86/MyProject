@@ -99,9 +99,9 @@
   }
 
   //字符常量
-  ,MOD_NAME = 'laydate', ELEM = '.layui-laydate', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'laydate-disabled', TIPS_OUT = '开始日期超出了结束日期<br>建议重新选择', LIMIT_YEAR = [100, 200000]
+  ,MOD_NAME = 'laydate', ELEM = '.src-laydate', THIS = 'src-this', SHOW = 'src-show', HIDE = 'src-hide', DISABLED = 'laydate-disabled', TIPS_OUT = '开始日期超出了结束日期<br>建议重新选择', LIMIT_YEAR = [100, 200000]
   
-  ,ELEM_STATIC = 'layui-laydate-res', ELEM_LIST = 'layui-laydate-list', ELEM_SELECTED = 'laydate-selected', ELEM_HINT = 'layui-laydate-hint', ELEM_PREV = 'laydate-day-prev', ELEM_NEXT = 'laydate-day-next', ELEM_FOOTER = 'layui-laydate-footer', ELEM_CONFIRM = '.laydate-btns-confirm', ELEM_TIME_TEXT = 'laydate-time-text', ELEM_TIME_BTN = '.laydate-btns-time'
+  ,ELEM_STATIC = 'src-laydate-res', ELEM_LIST = 'src-laydate-list', ELEM_SELECTED = 'laydate-selected', ELEM_HINT = 'src-laydate-hint', ELEM_PREV = 'laydate-day-prev', ELEM_NEXT = 'laydate-day-next', ELEM_FOOTER = 'src-laydate-footer', ELEM_CONFIRM = '.laydate-btns-confirm', ELEM_TIME_TEXT = 'laydate-time-text', ELEM_TIME_BTN = '.laydate-btns-time'
   
   //组件构造器
   ,Class = function(options){
@@ -543,7 +543,7 @@
       };
     });
     
-    that.elemID = 'layui-laydate'+ options.elem.attr('lay-key');
+    that.elemID = 'src-laydate'+ options.elem.attr('lay-key');
     
     if(options.show || isStatic) that.render();
     isStatic || that.events();
@@ -569,8 +569,8 @@
     ,elem = that.elem = lay.elem('div', {
       id: that.elemID
       ,'class': [
-        'layui-laydate'
-        ,options.range ? ' layui-laydate-range' : ''
+        'src-laydate'
+        ,options.range ? ' src-laydate-range' : ''
         ,isStatic ? (' '+ ELEM_STATIC) : ''
         ,options.theme && options.theme !== 'default' && !/^#/.test(options.theme) ? (' laydate-theme-' + options.theme) : ''
       ].join('')
@@ -597,19 +597,19 @@
 
       //头部区域
       var divHeader = lay.elem('div', {
-        'class': 'layui-laydate-header'
+        'class': 'src-laydate-header'
       })
       
       //左右切换
       ,headerChild = [function(){ //上一年
         var elem = lay.elem('i', {
-          'class': 'layui-icon laydate-icon laydate-prev-y'
+          'class': 'src-icon laydate-icon laydate-prev-y'
         });
         elem.innerHTML = '&#xe65a;';
         return elem;
       }(), function(){ //上一月
         var elem = lay.elem('i', {
-          'class': 'layui-icon laydate-icon laydate-prev-m'
+          'class': 'src-icon laydate-icon laydate-prev-m'
         });
         elem.innerHTML = '&#xe603;';
         return elem;
@@ -622,13 +622,13 @@
         return elem;
       }(), function(){ //下一月
         var elem = lay.elem('i', {
-          'class': 'layui-icon laydate-icon laydate-next-m'
+          'class': 'src-icon laydate-icon laydate-next-m'
         });
         elem.innerHTML = '&#xe602;';
         return elem;
       }(), function(){ //下一年
         var elem = lay.elem('i', {
-          'class': 'layui-icon laydate-icon laydate-next-y'
+          'class': 'src-icon laydate-icon laydate-next-y'
         });
         elem.innerHTML = '&#xe65b;';
         return elem;
@@ -636,7 +636,7 @@
       
       //日历内容区域
       ,divContent = lay.elem('div', {
-        'class': 'layui-laydate-content'
+        'class': 'src-laydate-content'
       })
       ,table = lay.elem('table')
       ,thead = lay.elem('thead'), theadTr = lay.elem('tr');
@@ -663,7 +663,7 @@
       divContent.appendChild(table);
       
       elemMain[i] = lay.elem('div', {
-        'class': 'layui-laydate-main laydate-main-list-'+ i
+        'class': 'src-laydate-main laydate-main-list-'+ i
       });
       
       elemMain[i].appendChild(divHeader);
@@ -700,8 +700,8 @@
     if(/^#/.test(options.theme)){
       var style = lay.elem('style')
       ,styleText = [
-        '#{{id}} .layui-laydate-header{background-color:{{theme}};}'
-        ,'#{{id}} .layui-this{background-color:{{theme}} !important;}'
+        '#{{id}} .src-laydate-header{background-color:{{theme}};}'
+        ,'#{{id}} .src-this{background-color:{{theme}} !important;}'
       ].join('').replace(/{{id}}/g, that.elemID).replace(/{{theme}}/g, options.theme);
       
       if('styleSheet' in style){

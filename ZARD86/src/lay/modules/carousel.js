@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.carousel 轮播模块
+ @Name：src.carousel 轮播模块
  @Author：贤心
  @License：MIT
     
@@ -31,9 +31,9 @@ layui.define('jquery', function(exports){
   }
   
   //字符常量
-  ,MOD_NAME = 'carousel', ELEM = '.layui-carousel', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'layui-disabled'
+  ,MOD_NAME = 'carousel', ELEM = '.src-carousel', THIS = 'src-this', SHOW = 'src-show', HIDE = 'src-hide', DISABLED = 'src-disabled'
   
-  ,ELEM_ITEM = '>*[carousel-item]>*', ELEM_LEFT = 'layui-carousel-left', ELEM_RIGHT = 'layui-carousel-right', ELEM_PREV = 'layui-carousel-prev', ELEM_NEXT = 'layui-carousel-next', ELEM_ARROW = 'layui-carousel-arrow', ELEM_IND = 'layui-carousel-ind'
+  ,ELEM_ITEM = '>*[carousel-item]>*', ELEM_LEFT = 'src-carousel-left', ELEM_RIGHT = 'src-carousel-right', ELEM_PREV = 'src-carousel-prev', ELEM_NEXT = 'src-carousel-next', ELEM_ARROW = 'src-carousel-arrow', ELEM_IND = 'src-carousel-ind'
   
   //构造器
   ,Class = function(options){
@@ -177,8 +177,8 @@ layui.define('jquery', function(exports){
     
     //模板
     var tplArrow = $([
-      '<button class="layui-icon '+ ELEM_ARROW +'" lay-type="sub">'+ (options.anim === 'updown' ? '&#xe619;' : '&#xe603;') +'</button>'
-      ,'<button class="layui-icon '+ ELEM_ARROW +'" lay-type="add">'+ (options.anim === 'updown' ? '&#xe61a;' : '&#xe602;') +'</button>'
+      '<button class="src-icon '+ ELEM_ARROW +'" lay-type="sub">'+ (options.anim === 'updown' ? '&#xe619;' : '&#xe603;') +'</button>'
+      ,'<button class="src-icon '+ ELEM_ARROW +'" lay-type="add">'+ (options.anim === 'updown' ? '&#xe61a;' : '&#xe602;') +'</button>'
     ].join(''));
     
     //预设基础属性
@@ -208,7 +208,7 @@ layui.define('jquery', function(exports){
       ,function(){
         var li = [];
         layui.each(that.elemItem, function(index){
-          li.push('<li'+ (options.index === index ? ' class="layui-this"' : '') +'></li>');
+          li.push('<li'+ (options.index === index ? ' class="src-this"' : '') +'></li>');
         });
         return li.join('');
       }()

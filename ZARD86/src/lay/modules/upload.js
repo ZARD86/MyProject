@@ -1,6 +1,6 @@
 /**
 
- @Title: layui.upload 文件上传
+ @Title: src.upload 文件上传
  @Author: 贤心
  @License：MIT
 
@@ -46,9 +46,9 @@ layui.define('layer' , function(exports){
   }
   
   //字符常量
-  ,MOD_NAME = 'upload', ELEM = '.layui-upload', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'layui-disabled'
+  ,MOD_NAME = 'upload', ELEM = '.src-upload', THIS = 'src-this', SHOW = 'src-show', HIDE = 'src-hide', DISABLED = 'src-disabled'
   
-  ,ELEM_FILE = 'layui-upload-file', ELEM_FORM = 'layui-upload-form', ELEM_IFRAME = 'layui-upload-iframe', ELEM_CHOOSE = 'layui-upload-choose', ELEM_DRAG = 'layui-upload-drag'
+  ,ELEM_FILE = 'src-upload-file', ELEM_FORM = 'src-upload-form', ELEM_IFRAME = 'src-upload-iframe', ELEM_CHOOSE = 'src-upload-choose', ELEM_DRAG = 'src-upload-drag'
   
   
   //构造器
@@ -104,7 +104,7 @@ layui.define('layer' , function(exports){
     
     //包裹ie8/9容器
     if(device.ie && device.ie < 10){
-      options.elem.wrap('<div class="layui-upload-wrap"></div>');
+      options.elem.wrap('<div class="src-upload-wrap"></div>');
     }
     
     that.isFile() ? (
@@ -468,7 +468,7 @@ layui.define('layer' , function(exports){
       }
       that.upload(null, 'choose');
       if(that.isFile() || options.choose) return;
-      elemFile.after('<span class="layui-inline '+ ELEM_CHOOSE +'">'+ value +'</span>');
+      elemFile.after('<span class="src-inline '+ ELEM_CHOOSE +'">'+ value +'</span>');
     };
 
     //点击上传容器

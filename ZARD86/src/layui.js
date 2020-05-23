@@ -1,8 +1,8 @@
 /*!
 
- @Name: layui
+ @Name: src
  @Description：经典模块化前端 UI 框架
- @Homepage: www.layui.com
+ @Homepage: www.src.com
  @Author: 贤心
  @License：MIT
 
@@ -70,7 +70,7 @@
     ,jquery: 'modules/jquery' //DOM库（第三方）
     
     ,mobile: 'modules/mobile' //移动大模块 | 若当前为开发目录，则为移动模块入口，否则为移动模块集合
-    ,'layui.all': '../layui.all' //PC模块合并版
+    ,'layui.all': '../src.all' //PC模块合并版
   };
 
   //记录基础数据
@@ -99,7 +99,7 @@
       deps = []
     );
     
-    if((!layui['layui.all'] && layui['layui.mobile'])){
+    if((!layui['layui.all'] && layui['src.mobile'])){
       return callback.call(that);
     }
 
@@ -155,10 +155,10 @@
       : ( typeof callback === 'function' && callback.apply(layui, exports) );
     }
     
-    //如果引入了完整库（layui.all.js），内置的模块则不必再加载
+    //如果引入了完整库（src.all.js），内置的模块则不必再加载
     if(apps.length === 0 
     || (layui['layui.all'] && modules[item]) 
-    || (!layui['layui.all'] && layui['layui.mobile'] && modules[item])
+    || (!layui['layui.all'] && layui['src.mobile'] && modules[item])
     ){
       return onCallback(), that;
     }

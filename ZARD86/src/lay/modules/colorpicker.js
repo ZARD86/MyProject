@@ -1,6 +1,6 @@
 /**
 
- @Title: layui.colorpicker 颜色选择器
+ @Title: src.colorpicker 颜色选择器
  @Author: star1029
  @License：MIT
 
@@ -40,11 +40,11 @@ layui.define('jquery', function(exports){
   }
 
   //字符常量
-  ,MOD_NAME = 'colorpicker', SHOW = 'layui-show', THIS = 'layui-this', ELEM = 'layui-colorpicker'
+  ,MOD_NAME = 'colorpicker', SHOW = 'src-show', THIS = 'src-this', ELEM = 'src-colorpicker'
   
-  ,ELEM_MAIN = '.layui-colorpicker-main', ICON_PICKER_DOWN = 'layui-icon-down', ICON_PICKER_CLOSE = 'layui-icon-close'
-  ,PICKER_TRIG_SPAN = 'layui-colorpicker-trigger-span', PICKER_TRIG_I = 'layui-colorpicker-trigger-i', PICKER_SIDE = 'layui-colorpicker-side', PICKER_SIDE_SLIDER = 'layui-colorpicker-side-slider'
-  ,PICKER_BASIS = 'layui-colorpicker-basis', PICKER_ALPHA_BG = 'layui-colorpicker-alpha-bgcolor', PICKER_ALPHA_SLIDER = 'layui-colorpicker-alpha-slider', PICKER_BASIS_CUR = 'layui-colorpicker-basis-cursor', PICKER_INPUT = 'layui-colorpicker-main-input'
+  ,ELEM_MAIN = '.src-colorpicker-main', ICON_PICKER_DOWN = 'src-icon-down', ICON_PICKER_CLOSE = 'src-icon-close'
+  ,PICKER_TRIG_SPAN = 'src-colorpicker-trigger-span', PICKER_TRIG_I = 'src-colorpicker-trigger-i', PICKER_SIDE = 'src-colorpicker-side', PICKER_SIDE_SLIDER = 'src-colorpicker-side-slider'
+  ,PICKER_BASIS = 'src-colorpicker-basis', PICKER_ALPHA_BG = 'src-colorpicker-alpha-bgcolor', PICKER_ALPHA_SLIDER = 'src-colorpicker-alpha-slider', PICKER_BASIS_CUR = 'src-colorpicker-basis-cursor', PICKER_INPUT = 'src-colorpicker-main-input'
 
   //RGB转HSB
   ,RGBToHSB = function(rgb){
@@ -166,11 +166,11 @@ layui.define('jquery', function(exports){
     ,options = that.config
     
     //颜色选择框对象
-    ,elemColorBox = $(['<div class="layui-unselect layui-colorpicker">'
+    ,elemColorBox = $(['<div class="src-unselect src-colorpicker">'
       ,'<span '+ (options.format == 'rgb' && options.alpha
-          ? 'class="layui-colorpicker-trigger-bgcolor"'
+          ? 'class="src-colorpicker-trigger-bgcolor"'
         : '') +'>'
-        ,'<span class="layui-colorpicker-trigger-span" '
+        ,'<span class="src-colorpicker-trigger-span" '
           ,'lay-type="'+ (options.format == 'rgb' ? (options.alpha ? 'rgba' : 'torgb') : '') +'" '
           ,'style="'+ function(){
             var bgstr = '';
@@ -188,7 +188,7 @@ layui.define('jquery', function(exports){
             
             return bgstr;
           }() +'">'
-          ,'<i class="layui-icon layui-colorpicker-trigger-i '+ (options.color 
+          ,'<i class="src-icon src-colorpicker-trigger-i '+ (options.color
             ? ICON_PICKER_DOWN 
           : ICON_PICKER_CLOSE) +'"></i>'
         ,'</span>'
@@ -197,10 +197,10 @@ layui.define('jquery', function(exports){
 
     //初始化颜色选择框
     var othis = $(options.elem);  
-    options.size && elemColorBox.addClass('layui-colorpicker-'+ options.size); //初始化颜色选择框尺寸
+    options.size && elemColorBox.addClass('src-colorpicker-'+ options.size); //初始化颜色选择框尺寸
     
     //插入颜色选择框
-    othis.addClass('layui-inline').html(
+    othis.addClass('src-inline').html(
       that.elemColorBox = elemColorBox
     );
     
@@ -218,33 +218,33 @@ layui.define('jquery', function(exports){
     ,elemColorBox = that.elemColorBox[0]
     
     //颜色选择器对象
-    ,elemPicker = that.elemPicker = $(['<div id="layui-colorpicker'+ that.index +'" data-index="'+ that.index +'" class="layui-anim layui-anim-upbit layui-colorpicker-main">'
+    ,elemPicker = that.elemPicker = $(['<div id="src-colorpicker'+ that.index +'" data-index="'+ that.index +'" class="src-anim src-anim-upbit src-colorpicker-main">'
       //颜色面板
-      ,'<div class="layui-colorpicker-main-wrapper">'
-        ,'<div class="layui-colorpicker-basis">'
-          ,'<div class="layui-colorpicker-basis-white"></div>'
-          ,'<div class="layui-colorpicker-basis-black"></div>'
-          ,'<div class="layui-colorpicker-basis-cursor"></div>'
+      ,'<div class="src-colorpicker-main-wrapper">'
+        ,'<div class="src-colorpicker-basis">'
+          ,'<div class="src-colorpicker-basis-white"></div>'
+          ,'<div class="src-colorpicker-basis-black"></div>'
+          ,'<div class="src-colorpicker-basis-cursor"></div>'
         ,'</div>'
-        ,'<div class="layui-colorpicker-side">'
-          ,'<div class="layui-colorpicker-side-slider"></div>'
+        ,'<div class="src-colorpicker-side">'
+          ,'<div class="src-colorpicker-side-slider"></div>'
         ,'</div>'
       ,'</div>'
       
       //透明度条块
-      ,'<div class="layui-colorpicker-main-alpha '+ (options.alpha ? SHOW : '') +'">'
-        ,'<div class="layui-colorpicker-alpha-bgcolor">'
-          ,'<div class="layui-colorpicker-alpha-slider"></div>'
+      ,'<div class="src-colorpicker-main-alpha '+ (options.alpha ? SHOW : '') +'">'
+        ,'<div class="src-colorpicker-alpha-bgcolor">'
+          ,'<div class="src-colorpicker-alpha-slider"></div>'
         ,'</div>'
       ,'</div>'
       
       //预设颜色列表
       ,function(){
         if(options.predefine){
-          var list = ['<div class="layui-colorpicker-main-pre">'];
+          var list = ['<div class="src-colorpicker-main-pre">'];
           layui.each(options.colors, function(i, v){
-            list.push(['<div class="layui-colorpicker-pre'+ ((v.match(/[0-9]{1,3}/g) || []).length > 3 
-              ? ' layui-colorpicker-pre-isalpha' 
+            list.push(['<div class="src-colorpicker-pre'+ ((v.match(/[0-9]{1,3}/g) || []).length > 3
+              ? ' src-colorpicker-pre-isalpha'
             : '') +'">'
               ,'<div style="background:'+ v +'"></div>'
             ,'</div>'].join(''));
@@ -257,13 +257,13 @@ layui.define('jquery', function(exports){
       }()
       
       //底部表单元素区域
-      ,'<div class="layui-colorpicker-main-input">'
-        ,'<div class="layui-inline">'
-          ,'<input type="text" class="layui-input">'
+      ,'<div class="src-colorpicker-main-input">'
+        ,'<div class="src-inline">'
+          ,'<input type="text" class="src-input">'
         ,'</div>'
-        ,'<div class="layui-btn-container">'
-          ,'<button class="layui-btn layui-btn-primary layui-btn-sm" colorpicker-events="clear">清空</button>'
-          ,'<button class="layui-btn layui-btn-sm" colorpicker-events="confirm">确定</button>'
+        ,'<div class="src-btn-container">'
+          ,'<button class="src-btn src-btn-primary src-btn-sm" colorpicker-events="clear">清空</button>'
+          ,'<button class="src-btn src-btn-sm" colorpicker-events="confirm">确定</button>'
         ,'</div'
       ,'</div>'
     ,'</div>'].join(''))
@@ -289,7 +289,7 @@ layui.define('jquery', function(exports){
   Class.prototype.removePicker = function(index){
     var that = this
     ,options = that.config;
-    $('#layui-colorpicker'+ (index || that.index)).remove();
+    $('#src-colorpicker'+ (index || that.index)).remove();
     return that;
   };
   
@@ -410,7 +410,7 @@ layui.define('jquery', function(exports){
     ,_a = Math.round(alphaslider[0].offsetLeft/280*100)/100    
     
     ,i = that.elemColorBox.find('.' + PICKER_TRIG_I)
-    ,pre = that.elemPicker.find('.layui-colorpicker-pre').children('div')
+    ,pre = that.elemPicker.find('.src-colorpicker-pre').children('div')
 
     ,change = function(x,y,z,a){
       that.select(x, y, z);
@@ -436,7 +436,7 @@ layui.define('jquery', function(exports){
     }
 
     //拖拽元素
-    ,elemMove = $(['<div class="layui-auxiliar-moving" id="LAY-colorpicker-moving"></div'].join(''))
+    ,elemMove = $(['<div class="src-auxiliar-moving" id="LAY-colorpicker-moving"></div'].join(''))
     ,createMoveElem = function(call){
       $('#LAY-colorpicker-moving')[0] || $('body').append(elemMove);
       elemMove.on('mousemove', call);
@@ -550,7 +550,7 @@ layui.define('jquery', function(exports){
     //预定义颜色选择
     pre.each(function(){
       $(this).on('click', function(){
-        $(this).parent('.layui-colorpicker-pre').addClass('selected').siblings().removeClass('selected');
+        $(this).parent('.src-colorpicker-pre').addClass('selected').siblings().removeClass('selected');
         var color = this.style.backgroundColor
         ,hsb = RGBToHSB(RGBSTo(color))
         ,a = color.slice(color.lastIndexOf(",") + 1, color.length - 1),left;

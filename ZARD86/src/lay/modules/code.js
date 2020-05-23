@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.code 代码修饰器
+ @Name：src.code 代码修饰器
  @Author：贤心
  @License：MIT
     
@@ -15,7 +15,7 @@ layui.define('jquery', function(exports){
   exports('code', function(options){
     var elems = [];
     options = options || {};
-    options.elem = $(options.elem||'.layui-code');
+    options.elem = $(options.elem||'.src-code');
     options.about = 'about' in options ? options.about : true;
     
     options.elem.each(function(){
@@ -31,18 +31,18 @@ layui.define('jquery', function(exports){
         .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&quot;')
       }
       
-      othis.html('<ol class="layui-code-ol"><li>' + html.replace(/[\r\t\n]+/g, '</li><li>') + '</li></ol>')
+      othis.html('<ol class="src-code-ol"><li>' + html.replace(/[\r\t\n]+/g, '</li><li>') + '</li></ol>')
       
-      if(!othis.find('>.layui-code-h3')[0]){
-        othis.prepend('<h3 class="layui-code-h3">'+ (othis.attr('lay-title')||options.title||'code') + (options.about ? '<a href="'+ about +'" target="_blank">layui.code</a>' : '') + '</h3>');
+      if(!othis.find('>.src-code-h3')[0]){
+        othis.prepend('<h3 class="src-code-h3">'+ (othis.attr('lay-title')||options.title||'code') + (options.about ? '<a href="'+ about +'" target="_blank">src.code</a>' : '') + '</h3>');
       }
       
-      var ol = othis.find('>.layui-code-ol');
-      othis.addClass('layui-box layui-code-view');
+      var ol = othis.find('>.src-code-ol');
+      othis.addClass('src-box src-code-view');
       
       //识别皮肤
       if(othis.attr('lay-skin') || options.skin){
-        othis.addClass('layui-code-' +(othis.attr('lay-skin') || options.skin));
+        othis.addClass('src-code-' +(othis.attr('lay-skin') || options.skin));
       }
       
       //按行数适配左边距

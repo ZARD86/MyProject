@@ -1,6 +1,6 @@
 ﻿/**
  
- @Name : layui.laytpl 模板引擎
+ @Name : src.laytpl 模板引擎
  @Author：贤心
  @License：MIT
  

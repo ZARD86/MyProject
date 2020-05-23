@@ -1,6 +1,6 @@
 /**
  
- @Name：layui.tree 树
+ @Name：src.tree 树
  @Author：star1029
  @License：MIT
 
@@ -66,11 +66,11 @@ layui.define('form', function(exports){
   }
 
   //字符常量
-  ,SHOW = 'layui-show', HIDE = 'layui-hide', NONE = 'layui-none', DISABLED = 'layui-disabled'
+  ,SHOW = 'src-show', HIDE = 'src-hide', NONE = 'src-none', DISABLED = 'src-disabled'
   
-  ,ELEM_VIEW = 'layui-tree', ELEM_SET = 'layui-tree-set', ICON_CLICK = 'layui-tree-iconClick'
-  ,ICON_ADD = 'layui-icon-addition', ICON_SUB = 'layui-icon-subtraction', ELEM_ENTRY = 'layui-tree-entry', ELEM_MAIN = 'layui-tree-main', ELEM_TEXT = 'layui-tree-txt', ELEM_PACK = 'layui-tree-pack', ELEM_SPREAD = 'layui-tree-spread'
-  ,ELEM_LINE_SHORT = 'layui-tree-setLineShort', ELEM_SHOW = 'layui-tree-showLine', ELEM_EXTEND = 'layui-tree-lineExtend'
+  ,ELEM_VIEW = 'src-tree', ELEM_SET = 'src-tree-set', ICON_CLICK = 'src-tree-iconClick'
+  ,ICON_ADD = 'src-icon-addition', ICON_SUB = 'src-icon-subtraction', ELEM_ENTRY = 'src-tree-entry', ELEM_MAIN = 'src-tree-main', ELEM_TEXT = 'src-tree-txt', ELEM_PACK = 'src-tree-pack', ELEM_SPREAD = 'src-tree-spread'
+  ,ELEM_LINE_SHORT = 'src-tree-setLineShort', ELEM_SHOW = 'src-tree-showLine', ELEM_EXTEND = 'src-tree-lineExtend'
  
   //构造器
   ,Class = function(options){
@@ -116,7 +116,7 @@ layui.define('form', function(exports){
     
     that.checkids = [];
 
-    var temp = $('<div class="layui-tree'+ (options.showCheckbox ? " layui-form" : "") + (options.showLine ? " layui-tree-line" : "") +'" lay-filter="LAY-tree-'+ that.index +'"></div>');
+    var temp = $('<div class="src-tree'+ (options.showCheckbox ? " src-form" : "") + (options.showLine ? " src-tree-line" : "") +'" lay-filter="LAY-tree-'+ that.index +'"></div>');
     that.tree(temp);
 
     var othis = options.elem = $(options.elem);
@@ -127,10 +127,10 @@ layui.define('form', function(exports){
     
     //插入组件结构
     that.elem = temp;
-    that.elemNone = $('<div class="layui-tree-emptyText">'+ options.text.none +'</div>');
+    that.elemNone = $('<div class="src-tree-emptyText">'+ options.text.none +'</div>');
     othis.html(that.elem);
 
-    if(that.elem.find('.layui-tree-set').length == 0){
+    if(that.elem.find('.src-tree-set').length == 0){
       return that.elem.append(that.elemNone);
     };
     
@@ -139,20 +139,20 @@ layui.define('form', function(exports){
       that.renderForm('checkbox');
     };
 
-    that.elem.find('.layui-tree-set').each(function(){
+    that.elem.find('.src-tree-set').each(function(){
       var othis = $(this);
       //最外层
-      if(!othis.parent('.layui-tree-pack')[0]){
-        othis.addClass('layui-tree-setHide');
+      if(!othis.parent('.src-tree-pack')[0]){
+        othis.addClass('src-tree-setHide');
       };
 
       //没有下一个节点 上一层父级有延伸线
-      if(!othis.next()[0] && othis.parents('.layui-tree-pack').eq(1).hasClass('layui-tree-lineExtend')){
+      if(!othis.next()[0] && othis.parents('.src-tree-pack').eq(1).hasClass('src-tree-lineExtend')){
         othis.addClass(ELEM_LINE_SHORT);
       };
       
       //没有下一个节点 外层最后一个
-      if(!othis.next()[0] && !othis.parents('.layui-tree-set').eq(0).next()[0]){
+      if(!othis.next()[0] && !othis.parents('.src-tree-set').eq(0).next()[0]){
         othis.addClass(ELEM_LINE_SHORT);
       };
     });
@@ -174,20 +174,20 @@ layui.define('form', function(exports){
     //遍历数据
     layui.each(data, function(index, item){
       var hasChild = item.children && item.children.length > 0
-      ,packDiv = $('<div class="layui-tree-pack" '+ (item.spread ? 'style="display: block;"' : '') +'"></div>')
-      ,entryDiv = $(['<div data-id="'+ item.id +'" class="layui-tree-set'+ (item.spread ? " layui-tree-spread" : "") + (item.checked ? " layui-tree-checkedFirst" : "") +'">'
-        ,'<div class="layui-tree-entry">'
-          ,'<div class="layui-tree-main">'
+      ,packDiv = $('<div class="src-tree-pack" '+ (item.spread ? 'style="display: block;"' : '') +'"></div>')
+      ,entryDiv = $(['<div data-id="'+ item.id +'" class="src-tree-set'+ (item.spread ? " src-tree-spread" : "") + (item.checked ? " src-tree-checkedFirst" : "") +'">'
+        ,'<div class="src-tree-entry">'
+          ,'<div class="src-tree-main">'
             //箭头
             ,function(){
               if(options.showLine){
                 if(hasChild){
-                  return '<span class="layui-tree-iconClick layui-tree-icon"><i class="layui-icon '+ (item.spread ? "layui-icon-subtraction" : "layui-icon-addition") +'"></i></span>';
+                  return '<span class="src-tree-iconClick src-tree-icon"><i class="src-icon '+ (item.spread ? "src-icon-subtraction" : "src-icon-addition") +'"></i></span>';
                 }else{
-                  return '<span class="layui-tree-iconClick"><i class="layui-icon layui-icon-file"></i></span>';
+                  return '<span class="src-tree-iconClick"><i class="src-icon src-icon-file"></i></span>';
                 };
               }else{
-                return '<span class="layui-tree-iconClick"><i class="layui-tree-iconArrow '+ (hasChild ? "": HIDE) +'"></i></span>';
+                return '<span class="src-tree-iconClick"><i class="src-tree-iconArrow '+ (hasChild ? "": HIDE) +'"></i></span>';
               };
             }()
             
@@ -211,10 +211,10 @@ layui.define('form', function(exports){
         if(!options.edit) return '';
         
         var editIcon = {
-          add: '<i class="layui-icon layui-icon-add-1"  data-type="add"></i>'
-          ,update: '<i class="layui-icon layui-icon-edit" data-type="update"></i>'
-          ,del: '<i class="layui-icon layui-icon-delete" data-type="del"></i>'
-        }, arr = ['<div class="layui-btn-group layui-tree-btnGroup">'];
+          add: '<i class="src-icon src-icon-add-1"  data-type="add"></i>'
+          ,update: '<i class="src-icon src-icon-edit" data-type="update"></i>'
+          ,del: '<i class="src-icon src-icon-delete" data-type="del"></i>'
+        }, arr = ['<div class="src-btn-group src-tree-btnGroup">'];
         
         if(options.edit === true){
           options.edit = ['update', 'del']
@@ -239,12 +239,12 @@ layui.define('form', function(exports){
       
       //若有前置节点，前置节点加连接线
       if(entryDiv.prev('.'+ELEM_SET)[0]){
-        entryDiv.prev().children('.layui-tree-pack').addClass('layui-tree-showLine');
+        entryDiv.prev().children('.src-tree-pack').addClass('src-tree-showLine');
       };
       
       //若无子节点，则父节点加延伸线
       if(!hasChild){
-        entryDiv.parent('.layui-tree-pack').addClass('layui-tree-lineExtend');
+        entryDiv.parent('.src-tree-pack').addClass('src-tree-lineExtend');
       };
 
       //展开节点操作
@@ -276,7 +276,7 @@ layui.define('form', function(exports){
     //展开收缩
     touchOpen.on('click', function(e){
       var packCont = elem.children('.'+ELEM_PACK)
-      ,iconClick = touchOpen.children('.layui-icon')[0] ? touchOpen.children('.layui-icon') : touchOpen.find('.layui-tree-icon').children('.layui-icon');
+      ,iconClick = touchOpen.children('.src-icon')[0] ? touchOpen.children('.src-icon') : touchOpen.find('.src-tree-icon').children('.src-icon');
 
       //若没有子节点
       if(!packCont[0]){
@@ -296,7 +296,7 @@ layui.define('form', function(exports){
             var sibls = elem.siblings('.'+ELEM_SET);
             sibls.removeClass(ELEM_SPREAD);
             sibls.children('.'+ELEM_PACK).slideUp(200);
-            sibls.find('.layui-tree-icon').children('.layui-icon').removeClass(ICON_SUB).addClass(ICON_ADD);
+            sibls.find('.src-tree-icon').children('.src-icon').removeClass(ICON_SUB).addClass(ICON_ADD);
           };
         };
       };
@@ -411,7 +411,7 @@ layui.define('form', function(exports){
     ,entry = elem.children('.'+ ELEM_ENTRY)
     ,elemMain = entry.children('.'+ ELEM_MAIN);
 
-    entry.children('.layui-tree-btnGroup').on('click', '.layui-icon', function(e){
+    entry.children('.src-tree-btnGroup').on('click', '.src-icon', function(e){
       layui.stope(e);  //阻止节点操作
 
       var type = $(this).data("type")
@@ -427,14 +427,14 @@ layui.define('form', function(exports){
         if(!packCont[0]){
           //若开启连接线，更改图标样式
           if(options.showLine){
-            elemMain.find('.'+ICON_CLICK).addClass('layui-tree-icon');
-            elemMain.find('.'+ICON_CLICK).children('.layui-icon').addClass(ICON_ADD).removeClass('layui-icon-file');
+            elemMain.find('.'+ICON_CLICK).addClass('src-tree-icon');
+            elemMain.find('.'+ICON_CLICK).children('.src-icon').addClass(ICON_ADD).removeClass('src-icon-file');
           //若未开启连接线，显示箭头
           }else{
-            elemMain.find('.layui-tree-iconArrow').removeClass(HIDE);
+            elemMain.find('.src-tree-iconArrow').removeClass(HIDE);
           };
           //节点添加子节点容器
-          elem.append('<div class="layui-tree-pack"></div>');
+          elem.append('<div class="src-tree-pack"></div>');
         };
 
         //新增节点
@@ -505,9 +505,9 @@ layui.define('form', function(exports){
         var text = elemMain.children('.'+ ELEM_TEXT).html();
         elemMain.children('.'+ ELEM_TEXT).html('');
         //添加输入框，覆盖在文字上方
-        elemMain.append('<input type="text" class="layui-tree-editInput">');
+        elemMain.append('<input type="text" class="src-tree-editInput">');
         //获取焦点
-        elemMain.children('.layui-tree-editInput').val(text).focus();
+        elemMain.children('.src-tree-editInput').val(text).focus();
         //嵌入文字移除输入框
         var getVal = function(input){
           var textNew = input.val().trim();
@@ -522,11 +522,11 @@ layui.define('form', function(exports){
           options.operate && options.operate(returnObj);
         };
         //失去焦点
-        elemMain.children('.layui-tree-editInput').blur(function(){
+        elemMain.children('.src-tree-editInput').blur(function(){
           getVal($(this));
         });
         //回车
-        elemMain.children('.layui-tree-editInput').on('keydown', function(e){
+        elemMain.children('.src-tree-editInput').on('keydown', function(e){
           if(e.keyCode === 13){
             e.preventDefault();
             getVal($(this));
@@ -626,8 +626,8 @@ layui.define('form', function(exports){
             var prevDiv = elem.parent('.'+ELEM_PACK).prev();
             //若开启了连接线
             if(options.showLine){
-              prevDiv.find('.'+ICON_CLICK).removeClass('layui-tree-icon');
-              prevDiv.find('.'+ICON_CLICK).children('.layui-icon').removeClass(ICON_SUB).addClass('layui-icon-file');
+              prevDiv.find('.'+ICON_CLICK).removeClass('src-tree-icon');
+              prevDiv.find('.'+ICON_CLICK).children('.src-icon').removeClass(ICON_SUB).addClass('src-icon-file');
               //父节点所在层添加延伸线
               var pare = prevDiv.parents('.'+ELEM_PACK).eq(0);
               pare.addClass(ELEM_EXTEND);
@@ -638,7 +638,7 @@ layui.define('form', function(exports){
               });
             }else{
             //父节点隐藏箭头
-              prevDiv.find('.layui-tree-iconArrow').addClass(HIDE);
+              prevDiv.find('.src-tree-iconArrow').addClass(HIDE);
             };
             //移除展开属性
             elem.parents('.'+ELEM_SET).eq(0).removeClass(ELEM_SPREAD);
@@ -657,13 +657,13 @@ layui.define('form', function(exports){
   Class.prototype.events = function(){
     var that = this
     ,options = that.config
-    ,checkWarp = that.elem.find('.layui-tree-checkedFirst');
+    ,checkWarp = that.elem.find('.src-tree-checkedFirst');
     
     //初始选中
     that.setChecked(that.checkids);
     
     //搜索
-    that.elem.find('.layui-tree-search').on('keyup', function(){
+    that.elem.find('.src-tree-search').on('keyup', function(){
       var input = $(this)
       ,val = input.val()
       ,pack = input.nextAll()
@@ -677,7 +677,7 @@ layui.define('form', function(exports){
           arr.push($(this).parent());
           
           var select = function(div){
-            div.addClass('layui-tree-searchShow');
+            div.addClass('src-tree-searchShow');
             //向上父节点渲染
             if(div.parent('.'+ELEM_PACK)[0]){
               select(div.parent('.'+ELEM_PACK).parent('.'+ELEM_SET));
@@ -690,11 +690,11 @@ layui.define('form', function(exports){
       //根据标志剔除
       pack.find('.'+ELEM_ENTRY).each(function(){
         var parent = $(this).parent('.'+ELEM_SET);
-        if(!parent.hasClass('layui-tree-searchShow')){
+        if(!parent.hasClass('src-tree-searchShow')){
           parent.addClass(HIDE);
         };
       });
-      if(pack.find('.layui-tree-searchShow').length == 0){
+      if(pack.find('.src-tree-searchShow').length == 0){
         that.elem.append(that.elemNone);
       };
 
@@ -705,12 +705,12 @@ layui.define('form', function(exports){
     });
 
     //还原搜索初始状态
-    that.elem.find('.layui-tree-search').on('keydown', function(){
+    that.elem.find('.src-tree-search').on('keydown', function(){
       $(this).nextAll().find('.'+ELEM_ENTRY).each(function(){
         var parent = $(this).parent('.'+ELEM_SET);
-        parent.removeClass('layui-tree-searchShow '+ HIDE);
+        parent.removeClass('src-tree-searchShow '+ HIDE);
       });
-      if($('.layui-tree-emptyText')[0]) $('.layui-tree-emptyText').remove();
+      if($('.src-tree-emptyText')[0]) $('.src-tree-emptyText').remove();
     });
   };
 
@@ -722,7 +722,7 @@ layui.define('form', function(exports){
     ,checkData = [];
     
     //遍历节点找到选中索引
-    that.elem.find('.layui-form-checked').each(function(){
+    that.elem.find('.src-form-checked').each(function(){
       checkId.push($(this).prev()[0].value);
     });
     

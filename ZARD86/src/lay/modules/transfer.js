@@ -1,6 +1,6 @@
 /**
  
- @Name：layui.transfer 穿梭框
+ @Name：src.transfer 穿梭框
  @Author：贤心
  @License：MIT
 
@@ -64,38 +64,38 @@ layui.define(['laytpl', 'form'], function(exports){
   }
 
   //字符常量
-  ,ELEM = 'layui-transfer', HIDE = 'layui-hide', DISABLED = 'layui-btn-disabled', NONE = 'layui-none'
-  ,ELEM_BOX = 'layui-transfer-box', ELEM_HEADER = 'layui-transfer-header', ELEM_SEARCH = 'layui-transfer-search', ELEM_ACTIVE = 'layui-transfer-active', ELEM_DATA = 'layui-transfer-data'
+  ,ELEM = 'src-transfer', HIDE = 'src-hide', DISABLED = 'src-btn-disabled', NONE = 'src-none'
+  ,ELEM_BOX = 'src-transfer-box', ELEM_HEADER = 'src-transfer-header', ELEM_SEARCH = 'src-transfer-search', ELEM_ACTIVE = 'src-transfer-active', ELEM_DATA = 'src-transfer-data'
   
   //穿梭框模板
   ,TPL_BOX = function(obj){
     obj = obj || {};
-    return ['<div class="layui-transfer-box" data-index="'+ obj.index +'">'
-      ,'<div class="layui-transfer-header">'
+    return ['<div class="src-transfer-box" data-index="'+ obj.index +'">'
+      ,'<div class="src-transfer-header">'
         ,'<input type="checkbox" name="'+ obj.checkAllName +'" lay-filter="layTransferCheckbox" lay-type="all" lay-skin="primary" title="{{ d.data.title['+ obj.index +'] || \'list'+ (obj.index + 1) +'\' }}">'
       ,'</div>'
       ,'{{# if(d.data.showSearch){ }}'
-      ,'<div class="layui-transfer-search">'
-        ,'<i class="layui-icon layui-icon-search"></i>'
-        ,'<input type="input" class="layui-input" placeholder="关键词搜索">'
+      ,'<div class="src-transfer-search">'
+        ,'<i class="src-icon src-icon-search"></i>'
+        ,'<input type="input" class="src-input" placeholder="关键词搜索">'
       ,'</div>'
       ,'{{# } }}'
-      ,'<ul class="layui-transfer-data"></ul>'
+      ,'<ul class="src-transfer-data"></ul>'
     ,'</div>'].join('');
   }
   
   //主模板
-  ,TPL_MAIN = ['<div class="layui-transfer layui-form layui-border-box" lay-filter="LAY-transfer-{{ d.index }}">'
+  ,TPL_MAIN = ['<div class="src-transfer src-form src-border-box" lay-filter="LAY-transfer-{{ d.index }}">'
     ,TPL_BOX({
       index: 0
       ,checkAllName: 'layTransferLeftCheckAll'
     })
-    ,'<div class="layui-transfer-active">'
-      ,'<button type="button" class="layui-btn layui-btn-sm layui-btn-primary layui-btn-disabled" data-index="0">'
-        ,'<i class="layui-icon layui-icon-next"></i>'
+    ,'<div class="src-transfer-active">'
+      ,'<button type="button" class="src-btn src-btn-sm src-btn-primary src-btn-disabled" data-index="0">'
+        ,'<i class="src-icon src-icon-next"></i>'
       ,'</button>'
-      ,'<button type="button" class="layui-btn layui-btn-sm layui-btn-primary layui-btn-disabled" data-index="1">'
-        ,'<i class="layui-icon layui-icon-prev"></i>'
+      ,'<button type="button" class="src-btn src-btn-sm src-btn-primary src-btn-disabled" data-index="1">'
+        ,'<i class="src-icon src-icon-prev"></i>'
       ,'</button>'
     ,'</div>'
     ,TPL_BOX({
@@ -168,7 +168,7 @@ layui.define(['laytpl', 'form'], function(exports){
     that.layHeader = that.elem.find('.'+ ELEM_HEADER)
     that.laySearch = that.elem.find('.'+ ELEM_SEARCH)
     that.layData = thisElem.find('.'+ ELEM_DATA);
-    that.layBtn = thisElem.find('.'+ ELEM_ACTIVE + ' .layui-btn');
+    that.layBtn = thisElem.find('.'+ ELEM_ACTIVE + ' .src-btn');
     
     //初始化尺寸
     that.layBox.css({
@@ -262,7 +262,7 @@ layui.define(['laytpl', 'form'], function(exports){
   
   //无数据视图
   Class.prototype.noneView = function(thisDataElem, text){
-    var createNoneElem = $('<p class="layui-none">'+ (text || '') +'</p>');
+    var createNoneElem = $('<p class="src-none">'+ (text || '') +'</p>');
     if(thisDataElem.find('.'+ NONE)[0]){
       thisDataElem.find('.'+ NONE).remove();
     }

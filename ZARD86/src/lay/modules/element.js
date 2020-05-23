@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.element 常用元素操作
+ @Name：src.element 常用元素操作
  @Author：贤心
  @License：MIT
     
@@ -13,7 +13,7 @@ layui.define('jquery', function(exports){
   ,hint = layui.hint()
   ,device = layui.device()
   
-  ,MOD_NAME = 'element', THIS = 'layui-this', SHOW = 'layui-show'
+  ,MOD_NAME = 'element', THIS = 'src-this', SHOW = 'src-show'
   
   ,Element = function(){
     this.config = {};
@@ -33,16 +33,16 @@ layui.define('jquery', function(exports){
   
   //外部Tab新增
   Element.prototype.tabAdd = function(filter, options){
-    var TITLE = '.layui-tab-title'
-    ,tabElem = $('.layui-tab[lay-filter='+ filter +']')
+    var TITLE = '.src-tab-title'
+    ,tabElem = $('.src-tab[lay-filter='+ filter +']')
     ,titElem = tabElem.children(TITLE)
-    ,barElem = titElem.children('.layui-tab-bar')
-    ,contElem = tabElem.children('.layui-tab-content')
+    ,barElem = titElem.children('.src-tab-bar')
+    ,contElem = tabElem.children('.src-tab-content')
     ,li = '<li lay-id="'+ (options.id||'') +'"'
     +(options.attr ? ' lay-attr="'+ options.attr +'"' : '') +'>'+ (options.title||'unnaming') +'</li>';
     
     barElem[0] ? barElem.before(li) : titElem.append(li);
-    contElem.append('<div class="layui-tab-item">'+ (options.content||'') +'</div>');
+    contElem.append('<div class="src-tab-item">'+ (options.content||'') +'</div>');
     call.hideTabMore(true);
     call.tabAuto();
     return this;
@@ -50,8 +50,8 @@ layui.define('jquery', function(exports){
   
   //外部Tab删除
   Element.prototype.tabDelete = function(filter, layid){
-    var TITLE = '.layui-tab-title'
-    ,tabElem = $('.layui-tab[lay-filter='+ filter +']')
+    var TITLE = '.src-tab-title'
+    ,tabElem = $('.src-tab[lay-filter='+ filter +']')
     ,titElem = tabElem.children(TITLE)
     ,liElem = titElem.find('>li[lay-id="'+ layid +'"]');
     call.tabDelete(null, liElem);
@@ -60,8 +60,8 @@ layui.define('jquery', function(exports){
   
   //外部Tab切换
   Element.prototype.tabChange = function(filter, layid){
-    var TITLE = '.layui-tab-title'
-    ,tabElem = $('.layui-tab[lay-filter='+ filter +']')
+    var TITLE = '.src-tab-title'
+    ,tabElem = $('.src-tab[lay-filter='+ filter +']')
     ,titElem = tabElem.children(TITLE)
     ,liElem = titElem.find('>li[lay-id="'+ layid +'"]');
     call.tabClick.call(liElem[0], null, null, liElem);
@@ -80,7 +80,7 @@ layui.define('jquery', function(exports){
   
   //动态改变进度条
   Element.prototype.progress = function(filter, percent){
-    var ELEM = 'layui-progress'
+    var ELEM = 'src-progress'
     ,elem = $('.'+ ELEM +'[lay-filter='+ filter +']')
     ,elemBar = elem.find('.'+ ELEM +'-bar')
     ,text = elemBar.find('.'+ ELEM +'-text');
@@ -89,9 +89,9 @@ layui.define('jquery', function(exports){
     return this;
   };
   
-  var NAV_ELEM = '.layui-nav', NAV_ITEM = 'layui-nav-item', NAV_BAR = 'layui-nav-bar'
-  ,NAV_TREE = 'layui-nav-tree', NAV_CHILD = 'layui-nav-child', NAV_MORE = 'layui-nav-more'
-  ,NAV_ANIM = 'layui-anim layui-anim-upbit'
+  var NAV_ELEM = '.src-nav', NAV_ITEM = 'src-nav-item', NAV_BAR = 'src-nav-bar'
+  ,NAV_TREE = 'src-nav-tree', NAV_CHILD = 'src-nav-child', NAV_MORE = 'src-nav-more'
+  ,NAV_ANIM = 'src-anim src-anim-upbit'
   
   //基础事件体
   ,call = {
@@ -100,8 +100,8 @@ layui.define('jquery', function(exports){
       options = options || {};
       var othis = liElem || $(this)
       ,index = index || othis.parent().children('li').index(othis)
-      ,parents = options.headerElem ? othis.parent() : othis.parents('.layui-tab').eq(0)
-      ,item = options.bodyElem ? $(options.bodyElem) : parents.children('.layui-tab-content').children('.layui-tab-item')
+      ,parents = options.headerElem ? othis.parent() : othis.parents('.src-tab').eq(0)
+      ,item = options.bodyElem ? $(options.bodyElem) : parents.children('.src-tab-content').children('.src-tab-item')
       ,elemA = othis.find('a')
       ,filter = parents.attr('lay-filter');
       
@@ -119,8 +119,8 @@ layui.define('jquery', function(exports){
     //Tab删除
     ,tabDelete: function(e, othis){
       var li = othis || $(this).parent(), index = li.index()
-      ,parents = li.parents('.layui-tab').eq(0)
-      ,item = parents.children('.layui-tab-content').children('.layui-tab-item')
+      ,parents = li.parents('.src-tab').eq(0)
+      ,item = parents.children('.src-tab-content').children('.src-tab-item')
       ,filter = parents.attr('lay-filter');
       
       if(li.hasClass(THIS)){
@@ -145,15 +145,15 @@ layui.define('jquery', function(exports){
     
     //Tab自适应
     ,tabAuto: function(){
-      var SCROLL = 'layui-tab-scroll', MORE = 'layui-tab-more', BAR = 'layui-tab-bar'
-      ,CLOSE = 'layui-tab-close', that = this;
+      var SCROLL = 'src-tab-scroll', MORE = 'src-tab-more', BAR = 'src-tab-bar'
+      ,CLOSE = 'src-tab-close', that = this;
       
-      $('.layui-tab').each(function(){
+      $('.src-tab').each(function(){
         var othis = $(this)
-        ,title = othis.children('.layui-tab-title')
-        ,item = othis.children('.layui-tab-content').children('.layui-tab-item')
+        ,title = othis.children('.src-tab-title')
+        ,item = othis.children('.src-tab-content').children('.src-tab-item')
         ,STOPE = 'lay-stope="tabmore"'
-        ,span = $('<span class="layui-unselect layui-tab-bar" '+ STOPE +'><i '+ STOPE +' class="layui-icon">&#xe61a;</i></span>');
+        ,span = $('<span class="src-unselect src-tab-bar" '+ STOPE +'><i '+ STOPE +' class="src-icon">&#xe61a;</i></span>');
 
         if(that === window && device.ie != 8){
           call.hideTabMore(true)
@@ -164,7 +164,7 @@ layui.define('jquery', function(exports){
           title.find('li').each(function(){
             var li = $(this);
             if(!li.find('.'+CLOSE)[0]){
-              var close = $('<i class="layui-icon layui-unselect '+ CLOSE +'">&#x1006;</i>');
+              var close = $('<i class="src-icon src-unselect '+ CLOSE +'">&#x1006;</i>');
               close.on('click', call.tabDelete);
               li.append(close);
             }
@@ -190,10 +190,10 @@ layui.define('jquery', function(exports){
     }
     //隐藏更多Tab
     ,hideTabMore: function(e){
-      var tsbTitle = $('.layui-tab-title');
+      var tsbTitle = $('.src-tab-title');
       if(e === true || $(e.target).attr('lay-stope') !== 'tabmore'){
-        tsbTitle.removeClass('layui-tab-more');
-        tsbTitle.find('.layui-tab-bar').attr('title','');
+        tsbTitle.removeClass('src-tab-more');
+        tsbTitle.find('.src-tab-bar').attr('title','');
       }
     }
     
@@ -212,7 +212,7 @@ layui.define('jquery', function(exports){
         othis.addClass(THIS);
       }
       
-      layui.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
+      src.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
     }
     )
     */
@@ -256,22 +256,22 @@ layui.define('jquery', function(exports){
       ,filter = parents.attr('lay-filter');
       parents.find('.'+THIS).removeClass(THIS);
       othis.addClass(THIS);
-      layui.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
+      src.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
     }
     */
     
     //折叠面板
     ,collapse: function(){
-      var othis = $(this), icon = othis.find('.layui-colla-icon')
-      ,elemCont = othis.siblings('.layui-colla-content')
-      ,parents = othis.parents('.layui-collapse').eq(0)
+      var othis = $(this), icon = othis.find('.src-colla-icon')
+      ,elemCont = othis.siblings('.src-colla-content')
+      ,parents = othis.parents('.src-collapse').eq(0)
       ,filter = parents.attr('lay-filter')
       ,isNone = elemCont.css('display') === 'none';
       
       //是否手风琴
       if(typeof parents.attr('lay-accordion') === 'string'){
-        var show = parents.children('.layui-colla-item').children('.'+SHOW);
-        show.siblings('.layui-colla-title').children('.layui-colla-icon').html('&#xe602;');
+        var show = parents.children('.src-colla-item').children('.'+SHOW);
+        show.siblings('.src-colla-title').children('.src-colla-icon').html('&#xe602;');
         show.removeClass(SHOW);
       }
       
@@ -390,7 +390,7 @@ layui.define('jquery', function(exports){
       
       //面包屑
       ,breadcrumb: function(){
-        var ELEM = '.layui-breadcrumb';
+        var ELEM = '.src-breadcrumb';
         
         $(ELEM + elemFilter).each(function(){
           var othis = $(this)
@@ -408,10 +408,10 @@ layui.define('jquery', function(exports){
       
       //进度条
       ,progress: function(){
-        var ELEM = 'layui-progress';
+        var ELEM = 'src-progress';
         $('.' + ELEM + elemFilter).each(function(){
           var othis = $(this)
-          ,elemBar = othis.find('.layui-progress-bar')
+          ,elemBar = othis.find('.src-progress-bar')
           ,percent = elemBar.attr('lay-percent');
 
           elemBar.css('width', function(){
@@ -430,19 +430,19 @@ layui.define('jquery', function(exports){
       
       //折叠面板
       ,collapse: function(){
-        var ELEM = 'layui-collapse';
+        var ELEM = 'src-collapse';
         
         $('.' + ELEM + elemFilter).each(function(){
-          var elemItem = $(this).find('.layui-colla-item')
+          var elemItem = $(this).find('.src-colla-item')
           elemItem.each(function(){
             var othis = $(this)
-            ,elemTitle = othis.find('.layui-colla-title')
-            ,elemCont = othis.find('.layui-colla-content')
+            ,elemTitle = othis.find('.src-colla-title')
+            ,elemCont = othis.find('.src-colla-content')
             ,isNone = elemCont.css('display') === 'none';
             
             //初始状态
-            elemTitle.find('.layui-colla-icon').remove();
-            elemTitle.append('<i class="layui-icon layui-colla-icon">'+ (isNone ? '&#xe602;' : '&#xe61a;') +'</i>');
+            elemTitle.find('.src-colla-icon').remove();
+            elemTitle.append('<i class="src-icon src-colla-icon">'+ (isNone ? '&#xe602;' : '&#xe61a;') +'</i>');
 
             //点击标题
             elemTitle.off('click', call.collapse).on('click', call.collapse);
@@ -462,7 +462,7 @@ layui.define('jquery', function(exports){
   var element = new Element(), dom = $(document);
   element.render();
   
-  var TITLE = '.layui-tab-title li';
+  var TITLE = '.src-tab-title li';
   dom.on('click', TITLE, call.tabClick); //Tab切换
   dom.on('click', call.hideTabMore); //隐藏展开的Tab
   $(window).on('resize', call.tabAuto); //自适应

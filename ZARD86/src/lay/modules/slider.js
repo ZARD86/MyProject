@@ -1,6 +1,6 @@
 /**
 
- @Title: layui.slider 滑块
+ @Title: src.slider 滑块
  @Author: star1029
  @License：MIT
 
@@ -42,7 +42,7 @@ layui.define('jquery', function(exports){
   }
 
   //字符常量
-  ,MOD_NAME = 'slider', DISABLED = 'layui-disabled', ELEM_VIEW = 'layui-slider', SLIDER_BAR = 'layui-slider-bar', SLIDER_WRAP = 'layui-slider-wrap', SLIDER_WRAP_BTN = 'layui-slider-wrap-btn', SLIDER_TIPS = 'layui-slider-tips', SLIDER_INPUT = 'layui-slider-input', SLIDER_INPUT_TXT = 'layui-slider-input-txt', SLIDER_INPUT_BTN = 'layui-slider-input-btn', ELEM_HOVER = 'layui-slider-hover'
+  ,MOD_NAME = 'slider', DISABLED = 'src-disabled', ELEM_VIEW = 'src-slider', SLIDER_BAR = 'src-slider-bar', SLIDER_WRAP = 'src-slider-wrap', SLIDER_WRAP_BTN = 'src-slider-wrap-btn', SLIDER_TIPS = 'src-slider-tips', SLIDER_INPUT = 'src-slider-input', SLIDER_INPUT_TXT = 'src-slider-input-txt', SLIDER_INPUT_BTN = 'src-slider-input-btn', ELEM_HOVER = 'src-slider-hover'
 
   //构造器
   ,Class = function(options){
@@ -114,9 +114,9 @@ layui.define('jquery', function(exports){
     var theme = options.disabled ? '#c2c2c2' : options.theme;
 
     //滑块
-    var temp = '<div class="layui-slider '+ (options.type === 'vertical' ? 'layui-slider-vertical' : '') +'">'+ (options.tips ? '<div class="layui-slider-tips"></div>' : '') + 
-    '<div class="layui-slider-bar" style="background:'+ theme +'; '+ (options.type === 'vertical' ? 'height' : 'width') +':'+ scale +';'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ (scaleFir || 0) +';"></div><div class="layui-slider-wrap" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ (scaleFir || scale) +';">' +
-    '<div class="layui-slider-wrap-btn" style="border: 2px solid '+ theme +';"></div></div>'+ (options.range ? '<div class="layui-slider-wrap" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ scaleSec +';"><div class="layui-slider-wrap-btn" style="border: 2px solid '+ theme +';"></div></div>' : '') +'</div>';
+    var temp = '<div class="src-slider '+ (options.type === 'vertical' ? 'src-slider-vertical' : '') +'">'+ (options.tips ? '<div class="src-slider-tips"></div>' : '') +
+    '<div class="src-slider-bar" style="background:'+ theme +'; '+ (options.type === 'vertical' ? 'height' : 'width') +':'+ scale +';'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ (scaleFir || 0) +';"></div><div class="src-slider-wrap" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ (scaleFir || scale) +';">' +
+    '<div class="src-slider-wrap-btn" style="border: 2px solid '+ theme +';"></div></div>'+ (options.range ? '<div class="src-slider-wrap" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ scaleSec +';"><div class="src-slider-wrap-btn" style="border: 2px solid '+ theme +';"></div></div>' : '') +'</div>';
 
     var othis = $(options.elem)
     ,hasRender = othis.next('.' + ELEM_VIEW);
@@ -146,7 +146,7 @@ layui.define('jquery', function(exports){
       for(var i = 1; i < number + 1; i++) {
         var step = i * 100 / number;
         if(step < 100){
-          item += '<div class="layui-slider-step" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ step +'%"></div>'
+          item += '<div class="src-slider-step" style="'+ (options.type === 'vertical' ? 'bottom' : 'left') +':'+ step +'%"></div>'
         }
       };
       that.elemTemp.append(item);
@@ -154,7 +154,7 @@ layui.define('jquery', function(exports){
 
     //插入输入框
     if(options.input && !options.range){
-      var elemInput = $('<div class="layui-slider-input layui-input"><div class="layui-slider-input-txt"><input type="text" class="layui-input"></div><div class="layui-slider-input-btn"><i class="layui-icon layui-icon-up"></i><i class="layui-icon layui-icon-down"></i></div></div>');
+      var elemInput = $('<div class="src-slider-input src-input"><div class="src-slider-input-txt"><input type="text" class="src-input"></div><div class="src-slider-input-btn"><i class="src-icon src-icon-up"></i><i class="src-icon src-icon-down"></i></div></div>');
       othis.css("position","relative");
       othis.append(elemInput);
       othis.find('.' + SLIDER_INPUT_TXT).children('input').val(options.value);
@@ -263,7 +263,7 @@ layui.define('jquery', function(exports){
     }
     
     //拖拽元素
-    ,elemMove = $(['<div class="layui-auxiliar-moving" id="LAY-slider-moving"></div'].join(''))
+    ,elemMove = $(['<div class="src-auxiliar-moving" id="LAY-slider-moving"></div'].join(''))
     ,createMoveElem = function(move, up){
       var upCall = function(){
         up && up();

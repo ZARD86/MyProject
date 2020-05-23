@@ -7,5 +7,5 @@
  */
  
 layui.define(function(exports){
-  exports('layui.mobile', layui.v);
+  exports('src.mobile', layui.v);
 });

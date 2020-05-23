@@ -42,7 +42,7 @@ layui.define(function(exports){
     }, false);
   };
 
-  var index = 0, classs = ['layui-m-layer'], Layer = function(options){
+  var index = 0, classs = ['src-m-layer'], Layer = function(options){
     var that = this;
     that.config = ready.extend(options);
     that.view();
@@ -74,7 +74,7 @@ layui.define(function(exports){
       if(btns === 2){
         btndom = '<span no type="0">'+ config.btn[1] +'</span>' + btndom;
       }
-      return '<div class="layui-m-layerbtn">'+ btndom + '</div>';
+      return '<div class="src-m-layerbtn">'+ btndom + '</div>';
     }());
     
     if(!config.fixed){
@@ -84,18 +84,18 @@ layui.define(function(exports){
     }
     
     if(config.type === 2){
-      config.content = '<i></i><i class="layui-m-layerload"></i><i></i><p>'+ (config.content||'') +'</p>';
+      config.content = '<i></i><i class="src-m-layerload"></i><i></i><p>'+ (config.content||'') +'</p>';
     }
     
     if(config.skin) config.anim = 'up';
     if(config.skin === 'msg') config.shade = false;
     
-    layerbox.innerHTML = (config.shade ? '<div '+ (typeof config.shade === 'string' ? 'style="'+ config.shade +'"' : '') +' class="layui-m-layershade"></div>' : '')
-    +'<div class="layui-m-layermain" '+ (!config.fixed ? 'style="position:res;"' : '') +'>'
-      +'<div class="layui-m-layersection">'
-        +'<div class="layui-m-layerchild '+ (config.skin ? 'layui-m-layer-' + config.skin + ' ' : '') + (config.className ? config.className : '') + ' ' + (config.anim ? 'layui-m-anim-' + config.anim : '') +'" ' + ( config.style ? 'style="'+config.style+'"' : '' ) +'>'
+    layerbox.innerHTML = (config.shade ? '<div '+ (typeof config.shade === 'string' ? 'style="'+ config.shade +'"' : '') +' class="src-m-layershade"></div>' : '')
+    +'<div class="src-m-layermain" '+ (!config.fixed ? 'style="position:res;"' : '') +'>'
+      +'<div class="src-m-layersection">'
+        +'<div class="src-m-layerchild '+ (config.skin ? 'src-m-layer-' + config.skin + ' ' : '') + (config.className ? config.className : '') + ' ' + (config.anim ? 'src-m-anim-' + config.anim : '') +'" ' + ( config.style ? 'style="'+config.style+'"' : '' ) +'>'
           + title
-          +'<div class="layui-m-layercont">'+ config.content +'</div>'
+          +'<div class="src-m-layercont">'+ config.content +'</div>'
           + button
         +'</div>'
       +'</div>'
@@ -137,7 +137,7 @@ layui.define(function(exports){
       }
     };
     if(config.btn){
-      var btns = elem[claname]('layui-m-layerbtn')[0].children, btnlen = btns.length;
+      var btns = elem[claname]('src-m-layerbtn')[0].children, btnlen = btns.length;
       for(var ii = 0; ii < btnlen; ii++){
         ready.touch(btns[ii], btn);
       }
@@ -145,7 +145,7 @@ layui.define(function(exports){
     
     //点遮罩关闭
     if(config.shade && config.shadeClose){
-      var shade = elem[claname]('layui-m-layershade')[0];
+      var shade = elem[claname]('src-m-layershade')[0];
       ready.touch(shade, function(){
         layer.close(that.index, config.end);
       });

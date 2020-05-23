@@ -132,7 +132,7 @@ var layer = {
   
   msg: function(content, options, end){ //最常用提示层
     var type = typeof options === 'function', rskin = ready.config.skin;
-    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'src-layer-msg';
     var anim = doms.anim.length - 1;
     if(type) end = options;
     return layer.open($.extend({
@@ -146,12 +146,12 @@ var layer = {
       resize: false,
       end: end
     }, (type && !ready.config.skin) ? {
-      skin: skin + ' layui-layer-hui',
+      skin: skin + ' src-layer-hui',
       anim: anim
     } : function(){
        options = options || {};
        if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
-         options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+         options.skin = skin + ' ' + (options.skin||'src-layer-hui');
        }
        return options;
     }()));  
@@ -192,7 +192,7 @@ var Class = function(setings){
 Class.pt = Class.prototype;
 
 //缓存常用字符
-var doms = ['layui-layer', '.layui-layer-title', '.layui-layer-main', '.layui-layer-dialog', 'layui-layer-iframe', 'layui-layer-content', 'layui-layer-btn', 'layui-layer-close'];
+var doms = ['src-layer', '.src-layer-title', '.src-layer-main', '.src-layer-dialog', 'src-layer-iframe', 'src-layer-content', 'src-layer-btn', 'src-layer-close'];
 doms.anim = ['layer-anim-00', 'layer-anim-01', 'layer-anim-02', 'layer-anim-03', 'layer-anim-04', 'layer-anim-05', 'layer-anim-06'];
 
 //默认配置
@@ -222,25 +222,25 @@ Class.pt.vessel = function(conType, callback){
   var that = this, times = that.index, config = that.config;
   var zIndex = config.zIndex + times, titype = typeof config.title === 'object';
   var ismax = config.maxmin && (config.type === 1 || config.type === 2);
-  var titleHTML = (config.title ? '<div class="layui-layer-title" style="'+ (titype ? config.title[1] : '') +'">' 
+  var titleHTML = (config.title ? '<div class="src-layer-title" style="'+ (titype ? config.title[1] : '') +'">'
     + (titype ? config.title[0] : config.title) 
   + '</div>' : '');
   
   config.zIndex = zIndex;
   callback([
     //遮罩
-    config.shade ? ('<div class="layui-layer-shade" id="layui-layer-shade'+ times +'" times="'+ times +'" style="'+ ('z-index:'+ (zIndex-1) +'; ') +'"></div>') : '',
+    config.shade ? ('<div class="src-layer-shade" id="src-layer-shade'+ times +'" times="'+ times +'" style="'+ ('z-index:'+ (zIndex-1) +'; ') +'"></div>') : '',
     
     //主体
-    '<div class="'+ doms[0] + (' layui-layer-'+ready.type[config.type]) + (((config.type == 0 || config.type == 2) && !config.shade) ? ' layui-layer-border' : '') + ' ' + (config.skin||'') +'" id="'+ doms[0] + times +'" type="'+ ready.type[config.type] +'" times="'+ times +'" showtime="'+ config.time +'" conType="'+ (conType ? 'object' : 'string') +'" style="z-index: '+ zIndex +'; width:'+ config.area[0] + ';height:' + config.area[1] + (config.fixed ? '' : ';position:absolute;') +'">'
+    '<div class="'+ doms[0] + (' src-layer-'+ready.type[config.type]) + (((config.type == 0 || config.type == 2) && !config.shade) ? ' src-layer-border' : '') + ' ' + (config.skin||'') +'" id="'+ doms[0] + times +'" type="'+ ready.type[config.type] +'" times="'+ times +'" showtime="'+ config.time +'" conType="'+ (conType ? 'object' : 'string') +'" style="z-index: '+ zIndex +'; width:'+ config.area[0] + ';height:' + config.area[1] + (config.fixed ? '' : ';position:absolute;') +'">'
       + (conType && config.type != 2 ? '' : titleHTML)
-      + '<div id="'+ (config.id||'') +'" class="layui-layer-content'+ ((config.type == 0 && config.icon !== -1) ? ' layui-layer-padding' :'') + (config.type == 3 ? ' layui-layer-loading'+config.icon : '') +'">'
-        + (config.type == 0 && config.icon !== -1 ? '<i class="layui-layer-ico layui-layer-ico'+ config.icon +'"></i>' : '')
+      + '<div id="'+ (config.id||'') +'" class="src-layer-content'+ ((config.type == 0 && config.icon !== -1) ? ' src-layer-padding' :'') + (config.type == 3 ? ' src-layer-loading'+config.icon : '') +'">'
+        + (config.type == 0 && config.icon !== -1 ? '<i class="src-layer-ico src-layer-ico'+ config.icon +'"></i>' : '')
         + (config.type == 1 && conType ? '' : (config.content||''))
       + '</div>'
-      + '<span class="layui-layer-setwin">'+ function(){
-        var closebtn = ismax ? '<a class="layui-layer-min" href="javascript:;"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;"></a>' : '';
-        config.closeBtn && (closebtn += '<a class="layui-layer-ico '+ doms[7] +' '+ doms[7] + (config.title ? config.closeBtn : (config.type == 4 ? '1' : '2')) +'" href="javascript:;"></a>');
+      + '<span class="src-layer-setwin">'+ function(){
+        var closebtn = ismax ? '<a class="src-layer-min" href="javascript:;"><cite></cite></a><a class="src-layer-ico src-layer-max" href="javascript:;"></a>' : '';
+        config.closeBtn && (closebtn += '<a class="src-layer-ico '+ doms[7] +' '+ doms[7] + (config.title ? config.closeBtn : (config.type == 4 ? '1' : '2')) +'" href="javascript:;"></a>');
         return closebtn;
       }() + '</span>'
       + (config.btn ? function(){
@@ -249,11 +249,11 @@ Class.pt.vessel = function(conType, callback){
         for(var i = 0, len = config.btn.length; i < len; i++){
           button += '<a class="'+ doms[6] +''+ i +'">'+ config.btn[i] +'</a>'
         }
-        return '<div class="'+ doms[6] +' layui-layer-btn-'+ (config.btnAlign||'') +'">'+ button +'</div>'
+        return '<div class="'+ doms[6] +' src-layer-btn-'+ (config.btnAlign||'') +'">'+ button +'</div>'
       }() : '')
-      + (config.resize ? '<span class="layui-layer-resize"></span>' : '')
+      + (config.resize ? '<span class="src-layer-resize"></span>' : '')
     + '</div>'
-  ], titleHTML, $('<div class="layui-layer-move"></div>'));
+  ], titleHTML, $('<div class="src-layer-move"></div>'));
   return that;
 };
 
@@ -288,7 +288,7 @@ Class.pt.creat = function(){
     break;
     case 2:
       var content = config.content = conType ? config.content : [config.content||'', 'auto'];
-      config.content = '<iframe scrolling="'+ (config.content[1]||'auto') +'" allowtransparency="true" id="'+ doms[4] +''+ times +'" name="'+ doms[4] +''+ times +'" onload="this.className=\'\';" class="layui-layer-load" frameborder="0" src="' + config.content[0] + '"></iframe>';
+      config.content = '<iframe scrolling="'+ (config.content[1]||'auto') +'" allowtransparency="true" id="'+ doms[4] +''+ times +'" name="'+ doms[4] +''+ times +'" onload="this.className=\'\';" class="src-layer-load" frameborder="0" src="' + config.content[0] + '"></iframe>';
     break;
     case 3:
       delete config.title;
@@ -299,7 +299,7 @@ Class.pt.creat = function(){
     case 4:
       conType || (config.content = [config.content, 'body']);
       config.follow = config.content[1];
-      config.content = config.content[0] + '<i class="layui-layer-TipsG"></i>';
+      config.content = config.content[0] + '<i class="src-layer-TipsG"></i>';
       delete config.title;
       config.tips = typeof config.tips === 'object' ? config.tips : [config.tips, true];
       config.tipsMore || layer.closeAll('tips');
@@ -314,18 +314,18 @@ Class.pt.creat = function(){
         $('body').append(html[1]);
       }() : function(){
         if(!content.parents('.'+doms[0])[0]){
-          content.data('display', content.css('display')).show().addClass('layui-layer-wrap').wrap(html[1]);
+          content.data('display', content.css('display')).show().addClass('src-layer-wrap').wrap(html[1]);
           $('#'+ doms[0] + times).find('.'+doms[5]).before(titleHTML);
         }
       }();
     }() : body.append(html[1]);
-    $('.layui-layer-move')[0] || body.append(ready.moveElem = moveElem);
+    $('.src-layer-move')[0] || body.append(ready.moveElem = moveElem);
     that.layero = $('#'+ doms[0] + times);
     config.scrollbar || doms.html.css('overflow', 'hidden').attr('layer-full', times);
   }).auto(times);
   
   //遮罩
-  $('#layui-layer-shade'+ that.index).css({
+  $('#src-layer-shade'+ that.index).css({
     'background-color': config.shade[1] || '#000'
     ,'opacity': config.shade[0]||config.shade
   });
@@ -471,7 +471,7 @@ Class.pt.tips = function(){
     height: follow.outerHeight(),
     top: follow.offset().top,
     left: follow.offset().left
-  }, tipsG = layero.find('.layui-layer-TipsG');
+  }, tipsG = layero.find('.src-layer-TipsG');
   
   var guide = config.tips[0];
   config.tips[1] || tipsG.remove();
@@ -489,19 +489,19 @@ Class.pt.tips = function(){
   goal.where = [function(){ //上        
     goal.autoLeft();
     goal.tipTop = goal.top - layArea[1] - 10;
-    tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipsT').css('border-right-color', config.tips[1]);
+    tipsG.removeClass('src-layer-TipsB').addClass('src-layer-TipsT').css('border-right-color', config.tips[1]);
   }, function(){ //右
     goal.tipLeft = goal.left + goal.width + 10;
     goal.tipTop = goal.top;
-    tipsG.removeClass('layui-layer-TipsL').addClass('layui-layer-TipsR').css('border-bottom-color', config.tips[1]); 
+    tipsG.removeClass('src-layer-TipsL').addClass('src-layer-TipsR').css('border-bottom-color', config.tips[1]);
   }, function(){ //下
     goal.autoLeft();
     goal.tipTop = goal.top + goal.height + 10;
-    tipsG.removeClass('layui-layer-TipsT').addClass('layui-layer-TipsB').css('border-right-color', config.tips[1]);
+    tipsG.removeClass('src-layer-TipsT').addClass('src-layer-TipsB').css('border-right-color', config.tips[1]);
   }, function(){ //左
     goal.tipLeft = goal.left - layArea[0] - 10;
     goal.tipTop = goal.top;
-    tipsG.removeClass('layui-layer-TipsR').addClass('layui-layer-TipsL').css('border-bottom-color', config.tips[1]);
+    tipsG.removeClass('src-layer-TipsR').addClass('src-layer-TipsL').css('border-bottom-color', config.tips[1]);
   }];
   goal.where[guide-1]();
   
@@ -533,7 +533,7 @@ Class.pt.move = function(){
   ,_DOC = $(document)
   ,layero = that.layero
   ,moveElem = layero.find(config.move)
-  ,resizeElem = layero.find('.layui-layer-resize')
+  ,resizeElem = layero.find('.src-layer-resize')
   ,dict = {};
   
   if(config.move){
@@ -663,19 +663,19 @@ Class.pt.callback = function(){
   
   //点遮罩关闭
   if(config.shadeClose){
-    $('#layui-layer-shade'+ that.index).on('click', function(){
+    $('#src-layer-shade'+ that.index).on('click', function(){
       layer.close(that.index);
     });
   } 
   
   //最小化
-  layero.find('.layui-layer-min').on('click', function(){
+  layero.find('.src-layer-min').on('click', function(){
     var min = config.min && config.min(layero);
     min === false || layer.min(that.index, config); 
   });
   
   //全屏/还原
-  layero.find('.layui-layer-max').on('click', function(){
+  layero.find('.src-layer-max').on('click', function(){
     if($(this).hasClass('layui-layer-maxmin')){
       layer.restore(that.index);
       config.restore && config.restore(layero);
@@ -736,7 +736,7 @@ ready.record = function(layero){
     layero.position().top, 
     layero.position().left + parseFloat(layero.css('margin-left'))
   ];
-  layero.find('.layui-layer-max').addClass('layui-layer-maxmin');
+  layero.find('.src-layer-max').addClass('src-layer-maxmin');
   layero.attr({area: area});
 };
 
@@ -785,7 +785,7 @@ layer.iframeSrc = function(index, url){
 //设定层的样式
 layer.style = function(index, options, limit){
   var layero = $('#'+ doms[0] + index)
-  ,contElem = layero.find('.layui-layer-content')
+  ,contElem = layero.find('.src-layer-content')
   ,type = layero.attr('type')
   ,titHeight = layero.find(doms[1]).outerHeight() || 0
   ,btnHeight = layero.find('.'+doms[6]).outerHeight() || 0
@@ -846,7 +846,7 @@ layer.min = function(index, options){
     ,overflow: 'hidden'
   }, true);
 
-  layero.find('.layui-layer-min').hide();
+  layero.find('.src-layer-min').hide();
   layero.attr('type') === 'page' && layero.find(doms[4]).hide();
   ready.rescollbar(index);
   
@@ -868,8 +868,8 @@ layer.restore = function(index){
     position: layero.attr('position'),
     overflow: 'visible'
   }, true);
-  layero.find('.layui-layer-max').removeClass('layui-layer-maxmin');
-  layero.find('.layui-layer-min').show();
+  layero.find('.src-layer-max').removeClass('src-layer-maxmin');
+  layero.find('.src-layer-min').show();
   layero.attr('type') === 'page' && layero.find(doms[4]).show();
   ready.rescollbar(index);
 };
@@ -890,7 +890,7 @@ layer.full = function(index){
       width: win.width(),
       height: win.height()
     }, true);
-    layero.find('.layui-layer-min').hide();
+    layero.find('.src-layer-min').hide();
   }, 100);
 };
 
@@ -904,7 +904,7 @@ layer.title = function(name, index){
 layer.close = function(index){
   var layero = $('#'+ doms[0] + index), type = layero.attr('type'), closeAnim = 'layer-anim-close';
   if(!layero[0]) return;
-  var WRAP = 'layui-layer-wrap', remove = function(){
+  var WRAP = 'src-layer-wrap', remove = function(){
     if(type === ready.type[1] && layero.attr('conType') === 'object'){
       layero.children(':not(.'+ doms[5] +')').remove();
       var wrap = layero.find('.'+WRAP);
@@ -933,7 +933,7 @@ layer.close = function(index){
     layero.addClass('layer-anim '+ closeAnim);
   }
   
-  $('#layui-layer-moves, #layui-layer-shade' + index).remove();
+  $('#src-layer-moves, #src-layer-shade' + index).remove();
   layer.ie == 6 && ready.reselect();
   ready.rescollbar(index); 
   if(layero.attr('minLeft')){
@@ -982,8 +982,8 @@ layer.prompt = function(options, yes){
     style = 'style="width: '+ area[0] +'; height: '+ area[1] + ';"';
     delete options.area;
   }
-  var prompt, content = options.formType == 2 ? '<textarea class="layui-layer-input"' + style +'></textarea>' : function(){
-    return '<input type="'+ (options.formType == 1 ? 'password' : 'text') +'" class="layui-layer-input">';
+  var prompt, content = options.formType == 2 ? '<textarea class="src-layer-input"' + style +'></textarea>' : function(){
+    return '<input type="'+ (options.formType == 1 ? 'password' : 'text') +'" class="src-layer-input">';
   }();
   
   var success = options.success;
@@ -993,10 +993,10 @@ layer.prompt = function(options, yes){
     type: 1
     ,btn: ['&#x786E;&#x5B9A;','&#x53D6;&#x6D88;']
     ,content: content
-    ,skin: 'layui-layer-prompt' + skin('prompt')
+    ,skin: 'src-layer-prompt' + skin('prompt')
     ,maxWidth: win.width()
     ,success: function(layero){
-      prompt = layero.find('.layui-layer-input');
+      prompt = layero.find('.src-layer-input');
       prompt.val(options.value || '').focus();
       typeof success === 'function' && success(layero);
     }
@@ -1019,14 +1019,14 @@ layer.tab = function(options){
   options = options || {};
   
   var tab = options.tab || {}
-  ,THIS = 'layui-this'
+  ,THIS = 'src-this'
   ,success = options.success;
   
   delete options.success;
   
   return layer.open($.extend({
     type: 1,
-    skin: 'layui-layer-tab' + skin('tab'),
+    skin: 'src-layer-tab' + skin('tab'),
     resize: false,
     title: function(){
       var len = tab.length, ii = 1, str = '';
@@ -1038,19 +1038,19 @@ layer.tab = function(options){
       }
       return str;
     }(),
-    content: '<ul class="layui-layer-tabmain">'+ function(){
+    content: '<ul class="src-layer-tabmain">'+ function(){
       var len = tab.length, ii = 1, str = '';
       if(len > 0){
-        str = '<li class="layui-layer-tabli '+ THIS +'">'+ (tab[0].content || 'no content') +'</li>';
+        str = '<li class="src-layer-tabli '+ THIS +'">'+ (tab[0].content || 'no content') +'</li>';
         for(; ii < len; ii++){
-          str += '<li class="layui-layer-tabli">'+ (tab[ii].content || 'no  content') +'</li>';
+          str += '<li class="src-layer-tabli">'+ (tab[ii].content || 'no  content') +'</li>';
         }
       }
       return str;
     }() +'</ul>',
     success: function(layero){
-      var btn = layero.find('.layui-layer-title').children();
-      var main = layero.find('.layui-layer-tabmain').children();
+      var btn = layero.find('.src-layer-title').children();
+      var main = layero.find('.src-layer-tabmain').children();
       btn.on('mousedown', function(e){
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
         var othis = $(this), index = othis.index();
@@ -1170,12 +1170,12 @@ layer.photos = function(options, loop, key){
       dict.imgsee.hide();
     });
     
-    dict.bigimg.find('.layui-layer-imgprev').on('click', function(event){
+    dict.bigimg.find('.src-layer-imgprev').on('click', function(event){
       event.preventDefault();
       dict.imgprev();
     });  
     
-    dict.bigimg.find('.layui-layer-imgnext').on('click', function(event){     
+    dict.bigimg.find('.src-layer-imgnext').on('click', function(event){
       event.preventDefault();
       dict.imgnext();
     });
@@ -1209,7 +1209,7 @@ layer.photos = function(options, loop, key){
     layer.close(dict.loadi);
     dict.index = layer.open($.extend({
       type: 1,
-      id: 'layui-layer-photos',
+      id: 'src-layer-photos',
       area: function(){
         var imgarea = [img.width, img.height];
         var winarea = [$(window).width() - 100, $(window).height() - 100];
@@ -1232,23 +1232,23 @@ layer.photos = function(options, loop, key){
       shade: 0.9,
       shadeClose: true,
       closeBtn: false,
-      move: '.layui-layer-phimg img',
+      move: '.src-layer-phimg img',
       moveType: 1,
       scrollbar: false,
       moveOut: true,
       //anim: Math.random()*5|0,
       isOutAnim: false,
-      skin: 'layui-layer-photos' + skin('photos'),
-      content: '<div class="layui-layer-phimg">'
+      skin: 'src-layer-photos' + skin('photos'),
+      content: '<div class="src-layer-phimg">'
         +'<img src="'+ data[start].src +'" alt="'+ (data[start].alt||'') +'" layer-pid="'+ data[start].pid +'">'
-        +'<div class="layui-layer-imgsee">'
-          +(data.length > 1 ? '<span class="layui-layer-imguide"><a href="javascript:;" class="layui-layer-iconext layui-layer-imgprev"></a><a href="javascript:;" class="layui-layer-iconext layui-layer-imgnext"></a></span>' : '')
-          +'<div class="layui-layer-imgbar" style="display:'+ (key ? 'block' : '') +'"><span class="layui-layer-imgtit"><a href="javascript:;">'+ (data[start].alt||'') +'</a><em>'+ dict.imgIndex +'/'+ data.length +'</em></span></div>'
+        +'<div class="src-layer-imgsee">'
+          +(data.length > 1 ? '<span class="src-layer-imguide"><a href="javascript:;" class="src-layer-iconext src-layer-imgprev"></a><a href="javascript:;" class="src-layer-iconext src-layer-imgnext"></a></span>' : '')
+          +'<div class="src-layer-imgbar" style="display:'+ (key ? 'block' : '') +'"><span class="src-layer-imgtit"><a href="javascript:;">'+ (data[start].alt||'') +'</a><em>'+ dict.imgIndex +'/'+ data.length +'</em></span></div>'
         +'</div>'
       +'</div>',
       success: function(layero, index){
-        dict.bigimg = layero.find('.layui-layer-phimg');
-        dict.imgsee = layero.find('.layui-layer-imguide,.layui-layer-imgbar');
+        dict.bigimg = layero.find('.src-layer-phimg');
+        dict.imgsee = layero.find('.src-layer-imguide,.src-layer-imgbar');
         dict.event(layero);
         options.tab && options.tab(data[start], layero);
         typeof success === 'function' && success(layero);
@@ -1292,7 +1292,7 @@ window.layui && layui.define ? (
     exports('layer', layer);
   })
 ) : (
-  (typeof define === 'function' && define.amd) ? define(['ZARD86/layui/src/lay/modules/jquery'], function(){ //requirejs加载
+  (typeof define === 'function' && define.amd) ? define(['ZARD86/src/src/lay/modules/jquery'], function(){ //requirejs加载
     ready.run(window.jQuery);
     return layer;
   }) : function(){ //普通script标签加载

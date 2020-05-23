@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.layedit 富文本编辑器
+ @Name：src.layedit 富文本编辑器
  @Author：贤心
  @License：MIT
     
@@ -15,7 +15,7 @@ layui.define(['layer', 'form'], function(exports){
   ,hint = layui.hint()
   ,device = layui.device()
   
-  ,MOD_NAME = 'layedit', THIS = 'layui-this', SHOW = 'layui-show', ABLED = 'layui-disabled'
+  ,MOD_NAME = 'layedit', THIS = 'src-this', SHOW = 'src-show', ABLED = 'src-disabled'
   
   ,Edit = function(){
     var that = this;
@@ -54,7 +54,7 @@ layui.define(['layer', 'form'], function(exports){
     
     var that = this
     ,config = that.config
-    ,ELEM = 'layui-layedit', textArea = $(typeof(id)=='string'?'#'+id:id)
+    ,ELEM = 'src-layedit', textArea = $(typeof(id)=='string'?'#'+id:id)
     ,name =  'LAY_layedit_'+ (++that.index)
     ,haveBuild = textArea.next('.'+ELEM)
     
@@ -75,21 +75,21 @@ layui.define(['layer', 'form'], function(exports){
  
     
     ,editor = $(['<div class="'+ ELEM +'">'
-      ,'<div class="layui-unselect layui-layedit-tool">'+ tool +'</div>'
-      ,'<div class="layui-layedit-iframe">'
+      ,'<div class="src-unselect src-layedit-tool">'+ tool +'</div>'
+      ,'<div class="src-layedit-iframe">'
         ,'<iframe id="'+ name +'" name="'+ name +'" textarea="'+ id +'" frameborder="0"></iframe>'
       ,'</div>'
     ,'</div>'].join(''))
     
     //编辑器不兼容ie8以下
     if(device.ie && device.ie < 8){
-      return textArea.removeClass('layui-hide').addClass(SHOW);
+      return textArea.removeClass('src-hide').addClass(SHOW);
     }
 
     haveBuild[0] && (haveBuild.remove());
 
     setIframe.call(that, editor, textArea[0], set)
-    textArea.addClass('layui-hide').after(editor);
+    textArea.addClass('src-hide').after(editor);
 
     return that.index;
   };
@@ -244,7 +244,7 @@ layui.define(['layer', 'form'], function(exports){
     });
     
     //修饰表格
-    body.find('table').addClass('layui-table');
+    body.find('table').addClass('src-table');
     
     //移除不安全的标签
     body.find('script,link').remove();
@@ -422,12 +422,12 @@ layui.define(['layer', 'form'], function(exports){
           ,area: ['600px', '380px']
           ,shadeClose: true
           ,shade: 0.1
-          ,skin: 'layui-layer-msg'
+          ,skin: 'src-layer-msg'
           ,content: ['http://www.layui.com/about/layedit/help.html', 'no']
         });
       }
     }
-    ,tools = editor.find('.layui-layedit-tool')
+    ,tools = editor.find('.src-layedit-tool')
     
     ,click = function(){
       var othis = $(this)
@@ -486,32 +486,32 @@ layui.define(['layer', 'form'], function(exports){
       ,shadeClose: true
       ,moveType: 1
       ,title: '超链接'
-      ,skin: 'layui-layer-msg'
-      ,content: ['<ul class="layui-form" style="margin: 15px;">'
-        ,'<li class="layui-form-item">'
-          ,'<label class="layui-form-label" style="width: 60px;">URL</label>'
-          ,'<div class="layui-input-block" style="margin-left: 90px">'
-            ,'<input name="url" lay-verify="url" value="'+ (options.href||'') +'" autofocus="true" autocomplete="off" class="layui-input">'
+      ,skin: 'src-layer-msg'
+      ,content: ['<ul class="src-form" style="margin: 15px;">'
+        ,'<li class="src-form-item">'
+          ,'<label class="src-form-label" style="width: 60px;">URL</label>'
+          ,'<div class="src-input-block" style="margin-left: 90px">'
+            ,'<input name="url" lay-verify="url" value="'+ (options.href||'') +'" autofocus="true" autocomplete="off" class="src-input">'
             ,'</div>'
         ,'</li>'
-        ,'<li class="layui-form-item">'
-          ,'<label class="layui-form-label" style="width: 60px;">打开方式</label>'
-          ,'<div class="layui-input-block" style="margin-left: 90px">'
-            ,'<input type="radio" name="target" value="_self" class="layui-input" title="当前窗口"'
+        ,'<li class="src-form-item">'
+          ,'<label class="src-form-label" style="width: 60px;">打开方式</label>'
+          ,'<div class="src-input-block" style="margin-left: 90px">'
+            ,'<input type="radio" name="target" value="_self" class="src-input" title="当前窗口"'
             + ((options.target==='_self' || !options.target) ? 'checked' : '') +'>'
-            ,'<input type="radio" name="target" value="_blank" class="layui-input" title="新窗口" '
+            ,'<input type="radio" name="target" value="_blank" class="src-input" title="新窗口" '
             + (options.target==='_blank' ? 'checked' : '') +'>'
           ,'</div>'
         ,'</li>'
-        ,'<li class="layui-form-item" style="text-align: center;">'
-          ,'<button type="button" lay-submit lay-filter="layedit-link-yes" class="layui-btn"> 确定 </button>'
-          ,'<button style="margin-left: 20px;" type="button" class="layui-btn layui-btn-primary"> 取消 </button>'
+        ,'<li class="src-form-item" style="text-align: center;">'
+          ,'<button type="button" lay-submit lay-filter="layedit-link-yes" class="src-btn"> 确定 </button>'
+          ,'<button style="margin-left: 20px;" type="button" class="src-btn src-btn-primary"> 取消 </button>'
         ,'</li>'
       ,'</ul>'].join('')
       ,success: function(layero, index){
         var eventFilter = 'submit(layedit-link-yes)';
         form.render('radio');  
-        layero.find('.layui-btn-primary').on('click', function(){
+        layero.find('.src-btn-primary').on('click', function(){
           layer.close(index);
           body.focus();
         });
@@ -544,17 +544,17 @@ layui.define(['layer', 'form'], function(exports){
       layui.each(faces, function(key, item){
         content.push('<li title="'+ key +'"><img src="'+ item +'" alt="'+ key +'"></li>');
       });
-      return '<ul class="layui-clear">' + content.join('') + '</ul>';
+      return '<ul class="src-clear">' + content.join('') + '</ul>';
     }(), this, {
       tips: 1
       ,time: 0
-      ,skin: 'layui-box layui-util-face'
+      ,skin: 'src-box src-util-face'
       ,maxWidth: 500
       ,success: function(layero, index){
         layero.css({
           marginTop: -4
           ,marginLeft: -10
-        }).find('.layui-clear>li').on('click', function(){
+        }).find('.src-clear>li').on('click', function(){
           callback && callback({
             src: faces[this.title]
             ,alt: this.title
@@ -576,11 +576,11 @@ layui.define(['layer', 'form'], function(exports){
       ,shadeClose: true
       ,moveType: 1
       ,title: '插入代码'
-      ,skin: 'layui-layer-msg'
-      ,content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
-        ,'<li class="layui-form-item">'
-          ,'<label class="layui-form-label">请选择语言</label>'
-          ,'<div class="layui-input-block">'
+      ,skin: 'src-layer-msg'
+      ,content: ['<ul class="src-form src-form-pane" style="margin: 15px;">'
+        ,'<li class="src-form-item">'
+          ,'<label class="src-form-label">请选择语言</label>'
+          ,'<div class="src-input-block">'
             ,'<select name="lang">'
               ,'<option value="JavaScript">JavaScript</option>'
               ,'<option value="HTML">HTML</option>'
@@ -594,21 +594,21 @@ layui.define(['layer', 'form'], function(exports){
             ,'</select>'
           ,'</div>'
         ,'</li>'
-        ,'<li class="layui-form-item layui-form-text">'
-          ,'<label class="layui-form-label">代码</label>'
-          ,'<div class="layui-input-block">'
-            ,'<textarea name="code" lay-verify="required" autofocus="true" class="layui-textarea" style="height: 200px;"></textarea>'
+        ,'<li class="src-form-item src-form-text">'
+          ,'<label class="src-form-label">代码</label>'
+          ,'<div class="src-input-block">'
+            ,'<textarea name="code" lay-verify="required" autofocus="true" class="src-textarea" style="height: 200px;"></textarea>'
           ,'</div>'
         ,'</li>'
-        ,'<li class="layui-form-item" style="text-align: center;">'
-          ,'<button type="button" lay-submit lay-filter="layedit-code-yes" class="layui-btn"> 确定 </button>'
-          ,'<button style="margin-left: 20px;" type="button" class="layui-btn layui-btn-primary"> 取消 </button>'
+        ,'<li class="src-form-item" style="text-align: center;">'
+          ,'<button type="button" lay-submit lay-filter="layedit-code-yes" class="src-btn"> 确定 </button>'
+          ,'<button style="margin-left: 20px;" type="button" class="src-btn src-btn-primary"> 取消 </button>'
         ,'</li>'
       ,'</ul>'].join('')
       ,success: function(layero, index){
         var eventFilter = 'submit(layedit-code-yes)';
         form.render('select');  
-        layero.find('.layui-btn-primary').on('click', function(){
+        layero.find('.src-btn-primary').on('click', function(){
           layer.close(index);
           body.focus();
         });
@@ -623,24 +623,24 @@ layui.define(['layer', 'form'], function(exports){
   
   //全部工具
   ,tools = {
-    html: '<i class="layui-icon layedit-tool-html" title="HTML源代码" lay-command="html" layedit-event="html"">&#xe64b;</i><span class="layedit-tool-mid"></span>'
-    ,strong: '<i class="layui-icon layedit-tool-b" title="加粗" lay-command="Bold" layedit-event="b"">&#xe62b;</i>'
-    ,italic: '<i class="layui-icon layedit-tool-i" title="斜体" lay-command="italic" layedit-event="i"">&#xe644;</i>'
-    ,underline: '<i class="layui-icon layedit-tool-u" title="下划线" lay-command="underline" layedit-event="u"">&#xe646;</i>'
-    ,del: '<i class="layui-icon layedit-tool-d" title="删除线" lay-command="strikeThrough" layedit-event="d"">&#xe64f;</i>'
+    html: '<i class="src-icon layedit-tool-html" title="HTML源代码" lay-command="html" layedit-event="html"">&#xe64b;</i><span class="layedit-tool-mid"></span>'
+    ,strong: '<i class="src-icon layedit-tool-b" title="加粗" lay-command="Bold" layedit-event="b"">&#xe62b;</i>'
+    ,italic: '<i class="src-icon layedit-tool-i" title="斜体" lay-command="italic" layedit-event="i"">&#xe644;</i>'
+    ,underline: '<i class="src-icon layedit-tool-u" title="下划线" lay-command="underline" layedit-event="u"">&#xe646;</i>'
+    ,del: '<i class="src-icon layedit-tool-d" title="删除线" lay-command="strikeThrough" layedit-event="d"">&#xe64f;</i>'
     
     ,'|': '<span class="layedit-tool-mid"></span>'
     
-    ,left: '<i class="layui-icon layedit-tool-left" title="左对齐" lay-command="justifyLeft" layedit-event="left"">&#xe649;</i>'
-    ,center: '<i class="layui-icon layedit-tool-center" title="居中对齐" lay-command="justifyCenter" layedit-event="center"">&#xe647;</i>'
-    ,right: '<i class="layui-icon layedit-tool-right" title="右对齐" lay-command="justifyRight" layedit-event="right"">&#xe648;</i>'
-    ,link: '<i class="layui-icon layedit-tool-link" title="插入链接" layedit-event="link"">&#xe64c;</i>'
-    ,unlink: '<i class="layui-icon layedit-tool-unlink layui-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink"">&#xe64d;</i>'
-    ,face: '<i class="layui-icon layedit-tool-face" title="表情" layedit-event="face"">&#xe650;</i>'
-    ,image: '<i class="layui-icon layedit-tool-image" title="图片" layedit-event="image">&#xe64a;<input type="file" name="file"></i>'
-    ,code: '<i class="layui-icon layedit-tool-code" title="插入代码" layedit-event="code">&#xe64e;</i>'
+    ,left: '<i class="src-icon layedit-tool-left" title="左对齐" lay-command="justifyLeft" layedit-event="left"">&#xe649;</i>'
+    ,center: '<i class="src-icon layedit-tool-center" title="居中对齐" lay-command="justifyCenter" layedit-event="center"">&#xe647;</i>'
+    ,right: '<i class="src-icon layedit-tool-right" title="右对齐" lay-command="justifyRight" layedit-event="right"">&#xe648;</i>'
+    ,link: '<i class="src-icon layedit-tool-link" title="插入链接" layedit-event="link"">&#xe64c;</i>'
+    ,unlink: '<i class="src-icon layedit-tool-unlink src-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink"">&#xe64d;</i>'
+    ,face: '<i class="src-icon layedit-tool-face" title="表情" layedit-event="face"">&#xe650;</i>'
+    ,image: '<i class="src-icon layedit-tool-image" title="图片" layedit-event="image">&#xe64a;<input type="file" name="file"></i>'
+    ,code: '<i class="src-icon layedit-tool-code" title="插入代码" layedit-event="code">&#xe64e;</i>'
     
-    ,help: '<i class="layui-icon layedit-tool-help" title="帮助" layedit-event="help">&#xe607;</i>'
+    ,help: '<i class="src-icon layedit-tool-help" title="帮助" layedit-event="help">&#xe607;</i>'
   }
   
   ,edit = new Edit();

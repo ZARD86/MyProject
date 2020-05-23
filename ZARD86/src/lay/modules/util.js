@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.util 工具集
+ @Name：src.util 工具集
  @Author：贤心
  @License：MIT
     
@@ -15,7 +15,7 @@ layui.define('jquery', function(exports){
   ,util = {
     //固定块
     fixbar: function(options){
-      var ELEM = 'layui-fixbar', TOP_BAR = 'layui-fixbar-top'
+      var ELEM = 'src-fixbar', TOP_BAR = 'src-fixbar-top'
       ,dom = $(document), body = $('body')
       ,is, timer;
 
@@ -29,9 +29,9 @@ layui.define('jquery', function(exports){
       
       var icon = [options.bar1, options.bar2, '&#xe604;'] //图标：信息、问号、TOP
       ,elem = $(['<ul class="'+ ELEM +'">'
-        ,options.bar1 ? '<li class="layui-icon" lay-type="bar1" style="'+ options.bgcolor +'">'+ icon[0] +'</li>' : ''
-        ,options.bar2 ? '<li class="layui-icon" lay-type="bar2" style="'+ options.bgcolor +'">'+ icon[1] +'</li>' : ''
-        ,'<li class="layui-icon '+ TOP_BAR +'" lay-type="top" style="'+ options.bgcolor +'">'+ icon[2] +'</li>'
+        ,options.bar1 ? '<li class="src-icon" lay-type="bar1" style="'+ options.bgcolor +'">'+ icon[0] +'</li>' : ''
+        ,options.bar2 ? '<li class="src-icon" lay-type="bar2" style="'+ options.bgcolor +'">'+ icon[1] +'</li>' : ''
+        ,'<li class="src-icon '+ TOP_BAR +'" lay-type="top" style="'+ options.bgcolor +'">'+ icon[2] +'</li>'
       ,'</ul>'].join(''))
       ,topBar = elem.find('.'+TOP_BAR)
       ,scroll = function(){

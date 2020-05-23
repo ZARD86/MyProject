@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" type="text/css" href="../../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/fs.css" media="all"/>
+    <script type="text/javascript" src="../../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/fsDict.js?v=1.5.0"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/fs.js?v=1.5.0"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/frame.js?v=1.5.0"></script>
+</head>
+<body>
+<div class="layui-fluid">
+
+    <form class="layui-form" id="edit_form"  isLoad="1" method="get" loadUrl="/admin/base/baseShiftInfo/queryById">
+        <input type="hidden" name="id"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">班次编码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="shiftCode" width="" id="shiftCode" required="" lay-verType="tips"
+                       lay-verify="required" placeholder="请输入编码" autocomplete="off" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">班次名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="shiftName" width="" id="shiftName" required="" lay-verType="tips"
+                       lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="timeIntervalStart" width="" id="timeIntervalStart" required="" lay-verType="tips"
+                       placeholder="时间" class="layui-input fsDate" dateType="time"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="timeInervalEnd" width="" id="timeInervalEnd" required="" lay-verType="tips"
+                       placeholder="时间" class="layui-input fsDate" dateType="time"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">说明</label>
+            <div class="layui-input-inline">
+                <input type="text" name="shiftDesc" width="" id="shiftDesc" required="" lay-verType="tips"
+                       lay-verify="required" placeholder="请输入说明" autocomplete="off" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <input type="text" name="remarks" width="" id="remarks" required="" lay-verType="tips"
+                      autocomplete="off" class="layui-input"/>
+            </div>
+        </div>
+        <hr/>
+        <div class="layui-form-item" style="text-align: center;"><br/>
+            <button class="layui-btn" lay-submit="" lay-filter="save" url="/admin/base/baseShiftInfo/save"
+                    method="post">保存
+            </button>
+            <button type="button" class="layui-btn layui-btn-primary" function="close">关闭</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

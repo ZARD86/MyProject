@@ -1,13 +1,13 @@
 /**
 
- @Name：layui 移动模块入口 | 构建后则为移动模块集合
+ @Name：src 移动模块入口 | 构建后则为移动模块集合
  @Author：贤心
  @License：MIT
     
  */
 
  
-if(!layui['layui.mobile']){
+if(!layui['src.mobile']){
   layui.config({
     base: layui.cache.dir + 'lay/modules/mobile/'
   }).extend({

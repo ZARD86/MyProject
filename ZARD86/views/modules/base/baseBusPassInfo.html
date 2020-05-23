@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>车辆出入场信息</title>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv ="Pragma" content = "no-cache"/>
+    <meta http-equiv="Cache-Control" content="no cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" type="text/css" href="../../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/fs.css" media="all"/>
+    <script type="text/javascript" src="../../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/fsDict.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/fs.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../../plugins/frame/js/frame.js?v=1.7.0"></script>
+    <script>
+		layui.use(['fsSelecter','fsDatagrid','fsCommon'], function () {
+			layui.fsButton.clear = function (elem,data,datagrid) {$("input").val("");$("select").val("");}
+		})
+	</script>
+</head>
+<body>
+<div >
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space1">
+            <div class="layui-col-md12">
+                <div class="layui-form-query">
+                    <form class="layui-form" id="query_form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-mid">车牌号:</label>
+                                <div class="layui-input-inline" style="width: 200px;">
+                                    <input type="text" name="busPlate" autocomplete="off" placeholder="请输入车牌号" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline" >
+                                <label class="layui-form-mid">出入类型：</label>
+                                <div class="layui-input-inline" style="width: 200px;">
+                                    <select id="passType" name="passType" lay-filter="passType" class="fsSelect" dict="passType" addNull="1">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <button class="layui-btn" type="button" function="query"><i class="layui-icon">&#xe615;</i>查询</button>
+                                    <button class="layui-btn layui-btn-danger" type="button" function="clear"> <i class="layui-icon">&#xe639;</i>清空 </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-row grid-demo">
+                    <div class="layui-col-md12">
+                        <table id="fsDatagrid" lay-filter="fsDatagrid" class="fsDatagrid" isLoad="1" url="admin/base/baseBusPassInfo/queryListForPage" isPage="1" sortType="1" pageSize="10" defaultForm="query_form" height="full-135" method="get"></table>
+                        <div class="fsDatagridCols">
+                            <p type="numbers" title="序号" align="center" width="3%"/>
+                            <p field="passType" title="出入类型" align="center" width="20%" dict="passType"/>
+                            <p field="busCode" title="车号" align="center" width="20%"/>
+                            <p field="busPlate" title="车牌号" align="center" width="20%"/>
+                            <p field="passTime" title="出入时间" align="center" width="37%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,6 +1,6 @@
 /**
 
- @Name：layui.flow 流加载
+ @Name：src.flow 流加载
  @Author：贤心
  @License：MIT
     
@@ -11,8 +11,8 @@ layui.define('jquery', function(exports){
   "use strict";
   
   var $ = layui.$, Flow = function(options){}
-  ,ELEM_MORE = 'layui-flow-more'
-  ,ELEM_LOAD = '<i class="layui-anim layui-anim-rotate layui-anim-loop layui-icon ">&#xe63e;</i>';
+  ,ELEM_MORE = 'src-flow-more'
+  ,ELEM_LOAD = '<i class="src-anim src-anim-rotate src-anim-loop src-icon ">&#xe63e;</i>';
 
   //主方法
   Flow.prototype.load = function(options){
@@ -30,9 +30,9 @@ layui.define('jquery', function(exports){
     
     //加载更多
     var ELEM_TEXT = '<cite>加载更多</cite>'
-    ,more = $('<div class="layui-flow-more"><a href="javascript:;">'+ ELEM_TEXT +'</a></div>');
+    ,more = $('<div class="src-flow-more"><a href="javascript:;">'+ ELEM_TEXT +'</a></div>');
     
-    if(!elem.find('.layui-flow-more')[0]){
+    if(!elem.find('.src-flow-more')[0]){
       elem.append(more);
     }
     

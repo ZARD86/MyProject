@@ -1,6 +1,6 @@
 /**
 
- @Title: layui.rate 评分评星
+ @Title: src.rate 评分评星
  @Author: star1029
  @License：MIT
 
@@ -42,9 +42,9 @@ layui.define('jquery',function(exports){
   }
 
   //字符常量
-  ,MOD_NAME = 'rate',ELEM_VIEW = 'layui-rate', ICON_RATE = 'layui-icon-rate', ICON_RATE_SOLID = 'layui-icon-rate-solid', ICON_RATE_HALF = 'layui-icon-rate-half'
+  ,MOD_NAME = 'rate',ELEM_VIEW = 'src-rate', ICON_RATE = 'src-icon-rate', ICON_RATE_SOLID = 'src-icon-rate-solid', ICON_RATE_HALF = 'src-icon-rate-half'
   
-  ,ICON_SOLID_HALF = 'layui-icon-rate-solid layui-icon-rate-half',  ICON_SOLID_RATE = 'layui-icon-rate-solid layui-icon-rate',  ICON_HALF_RATE = 'layui-icon-rate layui-icon-rate-half'
+  ,ICON_SOLID_HALF = 'src-icon-rate-solid src-icon-rate-half',  ICON_SOLID_RATE = 'src-icon-rate-solid src-icon-rate',  ICON_HALF_RATE = 'src-icon-rate src-icon-rate-half'
 
   //构造器
   ,Class = function(options){
@@ -80,16 +80,16 @@ layui.define('jquery',function(exports){
     }
 
     //组件模板
-    var temp = '<ul class="layui-rate" '+ (options.readonly ? 'readonly' : '') +'>';
+    var temp = '<ul class="src-rate" '+ (options.readonly ? 'readonly' : '') +'>';
     for(var i = 1;i <= options.length;i++){
-      var item = '<li class="layui-inline"><i class="layui-icon '
+      var item = '<li class="src-inline"><i class="src-icon '
         + (i>Math.floor(options.value)?ICON_RATE:ICON_RATE_SOLID)
       + '" '+ style +'></i></li>';
 
       if(options.half){
         if(parseInt(options.value) !== options.value){
           if(i == Math.ceil(options.value)){
-            temp = temp + '<li><i class="layui-icon layui-icon-rate-half" '+ style +'></i></li>';
+            temp = temp + '<li><i class="src-icon src-icon-rate-half" '+ style +'></i></li>';
           }else{
             temp = temp + item 
           } 
@@ -100,7 +100,7 @@ layui.define('jquery',function(exports){
         temp = temp +item;
       }
     }
-    temp += '</ul>' + (options.text ? ('<span class="layui-inline">'+ options.value + '星') : '') + '</span>';
+    temp += '</ul>' + (options.text ? ('<span class="src-inline">'+ options.value + '星') : '') + '</span>';
 
     //开始插入替代元素
     var othis = options.elem
@@ -117,7 +117,7 @@ layui.define('jquery',function(exports){
 
     othis.html(that.elemTemp);
 
-    othis.addClass("layui-inline");
+    othis.addClass("src-inline");
 
     //如果不是只读，那么进行触控事件
     if(!options.readonly) that.action(); 
